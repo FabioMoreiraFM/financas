@@ -2,7 +2,7 @@ CREATE TABLE regras (
 	idRegras int(11) NOT NULL auto_increment,
 	qtdMaxEnvioAgendamento int(4) not null default 3,
 	fatorDespesaReceitaEnvioEmail double not null default 0.9,
-	enviarEmailDividasAtrasas tinyint(1) not null default true,
+	enviarEmailDespesasAtrasadas tinyint(1) not null default true,
 	PRIMARY KEY (idRegras) 	
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
