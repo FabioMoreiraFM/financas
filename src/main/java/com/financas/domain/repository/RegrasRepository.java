@@ -1,17 +1,12 @@
 package com.financas.domain.repository;
 
-import java.util.List;
-
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.financas.domain.model.Regras;
 
 @Repository
-public interface RegrasRepository {
+public interface RegrasRepository extends JpaRepository<Regras, Long>{
 
-	public List<Regras> listar();
-
-	public Regras getRegra(Long id);
 	
-	public void save(Regras regras);
 }
