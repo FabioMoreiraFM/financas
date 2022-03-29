@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "a27dc47f-1cb8-49ec-b506-d2c347e1a660",
+		"name": "Finanças",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listar Regras",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/regras",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pegar regra por Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/regras/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regras",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Regras",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"qtdMaxEnvioAgendamento\": 3,\r\n    \"fatorDespesaReceitaEnvioEmail\": 0.9,\r\n    \"enviarEmailDespesasAtrasadas\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/regras/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regras",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
