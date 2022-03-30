@@ -2,7 +2,8 @@ package com.financas.domain.exception;
 
 public enum EnumEntidadeException {
 
-	Regras("regras");
+	Regras("regras"),
+	TipoDespesa("tipos-despesas");
 	
 	private String tipo;
 	

@@ -27,7 +27,7 @@ public class Despesa {
 	
 	private LocalDate dtPago;
 		
-	private TipoDespesa tipoDivida;
+	private TipoDespesa tipoDespesa;
 	
 	private Boolean paga;
 	
