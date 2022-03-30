@@ -2,6 +2,8 @@ package com.financas.api.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +39,7 @@ public class RegraController {
 	
 	@PutMapping("/{regrasId}")
 	public RegrasModel atualizar(@PathVariable Long regrasId,
-			@RequestBody RegrasModel regrasAtualizadas) {
+			@RequestBody @Valid RegrasModel regrasAtualizadas) {
 		
 		Regras regras = regrasService.getRegras(regrasId);
 		regrasConverter.copyToDomainObject(regrasAtualizadas, regras);
