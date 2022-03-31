@@ -32,13 +32,13 @@ public class TipoDespesaController {
 	private TipoDespesaConverter tipoDespesaConverter;
 	
 	@GetMapping
-	public List<TipoDespesa> listar() {
-		return tipoDespesaService.getTiposDespesas();
+	public List<TipoDespesaModel> listar() {
+		return tipoDespesaConverter.toCollectionModel(tipoDespesaService.getTiposDespesas());
 	}
 	
 	@GetMapping("/{tipoDespesaId}")
-	public TipoDespesa getById(@PathVariable Long tipoDespesaId) {
-		return tipoDespesaService.getTipoDespesa(tipoDespesaId);
+	public TipoDespesaModel getById(@PathVariable Long tipoDespesaId) {
+		return tipoDespesaConverter.toModel(tipoDespesaService.getTipoDespesa(tipoDespesaId));
 	}
 	
 	@PostMapping

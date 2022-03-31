@@ -1,5 +1,8 @@
 package com.financas.api.assembler;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,5 +24,10 @@ public class RegrasConverter {
 		return modelMapper.map(regras, RegrasModel.class);
 	}
 	
+	public List<RegrasModel> toCollectionModel(List<Regras> regras) {
+		return regras.stream()
+				.map(this::toModel)
+				.collect(Collectors.toList());
+	}
 	
 }

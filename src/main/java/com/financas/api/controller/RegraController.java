@@ -28,13 +28,13 @@ public class RegraController {
 	private RegrasConverter regrasConverter; 
 	
 	@GetMapping
-	public List<Regras> listar() {
-		return regrasService.listar();
+	public List<RegrasModel> listar() {
+		return regrasConverter.toCollectionModel(regrasService.listar());
 	}
 	
 	@GetMapping("/{regrasId}")
-	public Regras getById(@PathVariable Long regrasId) {
-		return regrasService.getRegras(regrasId);
+	public RegrasModel getById(@PathVariable Long regrasId) {
+		return regrasConverter.toModel(regrasService.getRegras(regrasId));
 	}
 	
 	@PutMapping("/{regrasId}")

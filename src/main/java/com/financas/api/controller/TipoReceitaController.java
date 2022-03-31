@@ -32,13 +32,13 @@ public class TipoReceitaController {
 	private TipoReceitaService tipoReceitaService;
 	
 	@GetMapping
-	public List<TipoReceita> listar() {
-		return tipoReceitaService.getTiposReceitas();
+	public List<TipoReceitaModel> listar() {
+		return tipoReceitaConverter.toCollectionModel(tipoReceitaService.getTiposReceitas());
 	}
 	
 	@GetMapping("/{idTipoReceita}")
-	public TipoReceita getById(@PathVariable Long idTipoReceita) {
-		return tipoReceitaService.getTipoReceita(idTipoReceita);
+	public TipoReceitaModel getById(@PathVariable Long idTipoReceita) {
+		return tipoReceitaConverter.toModel(tipoReceitaService.getTipoReceita(idTipoReceita));
 	}
 	
 	@PostMapping

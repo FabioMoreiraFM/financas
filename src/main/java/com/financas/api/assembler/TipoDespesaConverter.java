@@ -1,5 +1,8 @@
 package com.financas.api.assembler;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,5 +22,11 @@ public class TipoDespesaConverter {
 	
 	public TipoDespesaModel toModel(TipoDespesa tipoDespesa) {
 		return modelMapper.map(tipoDespesa, TipoDespesaModel.class);
+	}
+	
+	public List<TipoDespesaModel> toCollectionModel(List<TipoDespesa> tipoDespesa) {
+		return tipoDespesa.stream()
+				.map(this::toModel)
+				.collect(Collectors.toList());
 	}
 }
