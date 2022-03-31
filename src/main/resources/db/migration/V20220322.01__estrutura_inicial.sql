@@ -50,7 +50,6 @@ create table terceiro (
 
 create table terceiroPF (
 	idTerceiro int(11) not null auto_increment,
-	descricao varchar(255) not null,
 	cpf varchar(15) not null,
 	primary key (idTerceiro),
 	foreign key (idTerceiro) references terceiro(idTerceiro)
@@ -58,7 +57,6 @@ create table terceiroPF (
 
 create table terceiroPJ (
 	idTerceiro int(11) not null auto_increment,
-	descricao varchar(255) not null,
 	cnpj varchar(20) not null,
 	primary key (idTerceiro),
 	foreign key (idTerceiro) references terceiro(idTerceiro)
