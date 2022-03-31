@@ -19,7 +19,7 @@ import com.financas.domain.service.RegrasService;
 
 @RestController
 @RequestMapping(path = "/regras")
-public class RegraController {
+public class RegrasController {
 	
 	@Autowired
 	private RegrasService regrasService;
