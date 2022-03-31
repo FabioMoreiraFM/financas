@@ -4,7 +4,9 @@ public enum EnumEntidadeException {
 
 	Regras("regras"),
 	TipoDespesa("tipos-despesas"),
-	TipoReceita("tipos-receita");
+	TipoReceita("tipos-receita"),
+	TerceiroPF("terceiros/pf"),
+	TerceiroPJ("terceiros/pj");
 	
 	private String tipo;
 	

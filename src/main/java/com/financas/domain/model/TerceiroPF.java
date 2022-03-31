@@ -18,6 +18,11 @@ public class TerceiroPF extends Terceiro {
 	private String cpf;
 	
 	@Builder
+	public TerceiroPF() {
+		super("");
+	}
+	
+	@Builder
 	public TerceiroPF(String cpf, String nome) {
 		super(nome);	
 		this.cpf = cpf;

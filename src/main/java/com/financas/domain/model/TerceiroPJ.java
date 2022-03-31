@@ -22,4 +22,9 @@ public class TerceiroPJ extends Terceiro {
 		super(nome);		
 		this.cnpj = cnpj;
 	}
+
+	@Builder
+	public TerceiroPJ() {
+		super("");
+	}
 }

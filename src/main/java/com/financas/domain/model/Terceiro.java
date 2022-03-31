@@ -24,5 +24,5 @@ public abstract class Terceiro {
 	protected Long id;
 	
 	@NonNull
-	protected String nome;	
+	protected String descricao;	
 }
