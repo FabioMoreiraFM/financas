@@ -80,7 +80,7 @@ public class TerceiroController {
 		terceiroService.removerPF(terceiroPF);
 	}
 	
-	@PostMapping("/pj/{terceiroPJId}")
+	@DeleteMapping("/pj/{terceiroPJId}")
 	public void removerPJ(@PathVariable Long terceiroPJId) { 
 		TerceiroPJ terceiroPJ = terceiroService.getByIdTerceiroPJ(terceiroPJId);
 		terceiroService.removerPJ(terceiroPJ);
