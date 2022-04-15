@@ -33,14 +33,16 @@ create table usuario (
 	idUsuario int(11) not null auto_increment,
 	nome varchar(255) not null, 
 	email varchar(255) not null,
+	senha varchar(255) not null,
 	cep varchar(12),
 	logradouro varchar(255),
 	bairro varchar(255),
 	cidade varchar(255),
 	uf varchar(2),
-	celular varchar(9) not null,
+	celular varchar(13) not null,
+	dataCadastro datetime,
 	primary key (idUsuario)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
 
 create table terceiro (
 	idTerceiro int(11) not null auto_increment,

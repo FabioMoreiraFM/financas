@@ -1,26 +1,41 @@
 package com.financas.domain.model;
 
+import java.time.OffsetDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import lombok.Data;
 
 @Data
+@Entity
+@Table(name = "usuario")
 public class Usuario {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idUsuario")
 	private Long id;
 	
 	private String nome;
 	
 	private String email;
 	
-	private String cep;
+	private String senha;
 	
-	private String logradouro;
-	
-	private String bairro;
-	
-	private String cidade;
-	
-	private String uf;
+	@Embedded
+	private Endereco endereco;
 	
 	private String celular;
 	
+	@CreationTimestamp
+	@Column(nullable = false, columnDefinition = "datetime")
+	private OffsetDateTime dataCadastro;
 }

@@ -16,10 +16,12 @@ public class GenericConverter<X, T> {
 	private ModelMapper modelMapper;
 	
 	private Class<X> xType;
+	private Class<T> tType;
 	
 	@SuppressWarnings("unchecked")
 	public GenericConverter() {
 		this.xType = (Class<X>) getGenericClassType(0);
+		this.tType = (Class<T>) getGenericClassType(1);
 	}
 	
 	private Type getGenericClassType(int index) {
@@ -51,5 +53,9 @@ public class GenericConverter<X, T> {
 		return regras.stream()
 				.map(this::toModel)
 				.collect(Collectors.toList());
+	}
+	
+	public T toDomainObject(X regrasModel) {
+		return modelMapper.map(regrasModel, tType);
 	}
 }

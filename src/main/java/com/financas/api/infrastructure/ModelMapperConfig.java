@@ -9,11 +9,13 @@ import com.financas.api.model.TerceiroPFModel;
 import com.financas.api.model.TerceiroPJModel;
 import com.financas.api.model.TipoDespesaModel;
 import com.financas.api.model.TipoReceitaModel;
+import com.financas.api.model.UsuarioModel;
 import com.financas.domain.model.Regras;
 import com.financas.domain.model.TerceiroPF;
 import com.financas.domain.model.TerceiroPJ;
 import com.financas.domain.model.TipoDespesa;
 import com.financas.domain.model.TipoReceita;
+import com.financas.domain.model.Usuario;
 
 @Configuration
 public class ModelMapperConfig {
@@ -26,6 +28,7 @@ public class ModelMapperConfig {
 		tipoReceitaModelToTipoReceitaConfig(modelMapper);
 		terceiroPFModelToTerceiroPFConfig(modelMapper);
 		terceiroPJModelToTerceiroPJConfig(modelMapper);
+		usuarioModelToUsuarioConfig(modelMapper);
 		
 		return modelMapper;
 	}
@@ -53,6 +56,11 @@ public class ModelMapperConfig {
 	public void terceiroPJModelToTerceiroPJConfig(ModelMapper modelMapper) {
 		modelMapper.createTypeMap(TerceiroPJModel.class, TerceiroPJ.class)
 		.addMappings(mapper -> mapper.skip(TerceiroPJ::setId));
+	}
+	
+	public void usuarioModelToUsuarioConfig(ModelMapper modelMapper) {
+		modelMapper.createTypeMap(UsuarioModel.class, Usuario.class)
+		.addMappings(mapper -> mapper.skip(Usuario::setId));
 	}
 	
 }
