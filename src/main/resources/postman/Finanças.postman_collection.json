@@ -6,76 +6,665 @@
 	},
 	"item": [
 		{
-			"name": "Listar Regras",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/regras",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"regras"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Pegar regra por Id",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"url": {
-					"raw": "localhost:8080/regras/2",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"regras",
-						"2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Atualizar Regras",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"qtdMaxEnvioAgendamento\": 3,\r\n    \"fatorDespesaReceitaEnvioEmail\": 0.9,\r\n    \"enviarEmailDespesasAtrasadas\": true\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Regras",
+			"item": [
+				{
+					"name": "Pegar regra por Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/regras/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"regras",
+								"1"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8080/regras/1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"regras",
-						"1"
-					]
+				{
+					"name": "Atualizar Regras",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"qtdMaxEnvioAgendamento\": 3,    \r\n    \"enviarEmailDespesasAtrasadas\": true,\r\n    \"fatorDespesaReceitaEnvioEmail\": 0.9 \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/regras/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"regras",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Regras",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/regras",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"regras"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Usuários",
+			"item": [
+				{
+					"name": "Listar Usuários",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pegar usuário por Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/usuarios/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Usuário",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Teste alteração\",    \r\n    \"email\": \"teste_teste@gmail.com\",\r\n    \"celular\": \"49999587844\",\r\n    \"endereco\": {\r\n        \"cep\": \"88.122-600\",\r\n        \"logradouro\": \"Rua do Teste\",\r\n        \"bairro\": \"Iprigan\",\r\n        \"cidade\": \"Longe\",\r\n        \"uf\": \"SC\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/usuarios/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Novo usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Teste alteração\",    \r\n    \"email\": \"teste_teste@gmail.com\",\r\n    \"celular\": \"49999587844\",\r\n    \"senha\": \"asdasdas44545\",\r\n    \"endereco\": {\r\n        \"cep\": \"88.122-600\",\r\n        \"logradouro\": \"Rua do Teste\",\r\n        \"bairro\": \"Iprigan\",\r\n        \"cidade\": \"Longe\",\r\n        \"uf\": \"SC\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar usuário",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Teste alteração\",    \r\n    \"email\": \"teste_teste@gmail.com\",\r\n    \"celular\": \"49999587844\",\r\n    \"senha\": \"asdasdas44545\",\r\n    \"endereco\": {\r\n        \"cep\": \"88.122-600\",\r\n        \"logradouro\": \"Rua do Teste\",\r\n        \"bairro\": \"Iprigan\",\r\n        \"cidade\": \"Longe\",\r\n        \"uf\": \"SC\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/usuarios/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Terceiro PF",
+			"item": [
+				{
+					"name": "Listar terceiro PF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/terceiros/pf",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"terceiros",
+								"pf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pegar terceiro por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/terceiros/pf/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"terceiros",
+								"pf",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Novo terceiro PF",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Teste PF\",\r\n    \"cpf\": \"52737850061\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/terceiros/pf",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"terceiros",
+								"pf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar terceiros PF",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Teste alteração\",    \r\n    \"email\": \"teste_teste@gmail.com\",\r\n    \"celular\": \"49999587844\",\r\n    \"senha\": \"asdasdas44545\",\r\n    \"endereco\": {\r\n        \"cep\": \"88.122-600\",\r\n        \"logradouro\": \"Rua do Teste\",\r\n        \"bairro\": \"Iprigan\",\r\n        \"cidade\": \"Longe\",\r\n        \"uf\": \"SC\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/terceiros/pf/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"terceiros",
+								"pf",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Terceiro PJ",
+			"item": [
+				{
+					"name": "Listar terceiro PJ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/terceiros/pj",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"terceiros",
+								"pj"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pegar terceiro PJ por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/terceiros/pj/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"terceiros",
+								"pj",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Novo terceiro PJ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Teste PJ\",\r\n    \"cnpj\": \"51757676000165\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/terceiros/pj",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"terceiros",
+								"pj"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar terceiros PJ",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Teste alteração\",    \r\n    \"email\": \"teste_teste@gmail.com\",\r\n    \"celular\": \"49999587844\",\r\n    \"senha\": \"asdasdas44545\",\r\n    \"endereco\": {\r\n        \"cep\": \"88.122-600\",\r\n        \"logradouro\": \"Rua do Teste\",\r\n        \"bairro\": \"Iprigan\",\r\n        \"cidade\": \"Longe\",\r\n        \"uf\": \"SC\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/terceiros/pj/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"terceiros",
+								"pj",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tipo Despesa",
+			"item": [
+				{
+					"name": "Listar tipo de despesa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tipos-despesas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tipos-despesas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pegar tipo de despesa por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tipos-despesas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tipos-despesas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar tipo de despesa",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Teste alteração\",    \r\n    \"email\": \"teste_teste@gmail.com\",\r\n    \"celular\": \"49999587844\",\r\n    \"senha\": \"asdasdas44545\",\r\n    \"endereco\": {\r\n        \"cep\": \"88.122-600\",\r\n        \"logradouro\": \"Rua do Teste\",\r\n        \"bairro\": \"Iprigan\",\r\n        \"cidade\": \"Longe\",\r\n        \"uf\": \"SC\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tipos-despesas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tipos-despesas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Novo tipo de despesa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Teste alteração\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tipos-despesas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tipos-despesas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar tipo de despesa",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tipos-despesas/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tipos-despesas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tipo Receita",
+			"item": [
+				{
+					"name": "Listar tipo de receita",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tipos-receitas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tipos-receitas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pegar tipo de receita por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tipos-receitas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tipos-receitas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar tipo de receita",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Teste alteração\",    \r\n    \"email\": \"teste_teste@gmail.com\",\r\n    \"celular\": \"49999587844\",\r\n    \"senha\": \"asdasdas44545\",\r\n    \"endereco\": {\r\n        \"cep\": \"88.122-600\",\r\n        \"logradouro\": \"Rua do Teste\",\r\n        \"bairro\": \"Iprigan\",\r\n        \"cidade\": \"Longe\",\r\n        \"uf\": \"SC\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tipos-receitas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tipos-receitas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Novo tipo de receita",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Teste alteração\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tipos-receitas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tipos-receitas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar tipo de receita",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Testes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tipos-receitas/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tipos-receitas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
