@@ -2,6 +2,8 @@ package com.financas.domain.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,18 +41,22 @@ public class TerceiroService {
 				.orElseThrow(() -> new EntidadeNaoEncontradaException(EnumEntidadeException.TerceiroPJ, terceiroPJId));
 	}
 	
+	@Transactional
 	public TerceiroPF salvarTerceiroPF(TerceiroPF terceiroPF) {
 		return terceiroPFRepository.save(terceiroPF);
 	}
-	
+		
+	@Transactional
 	public TerceiroPJ salvarTerceiroPJ(TerceiroPJ terceiroPJ) {
 		return terceiroPJRepository.save(terceiroPJ);
 	}
 	
+	@Transactional
 	public void removerPF(TerceiroPF terceiroPF) {
 		terceiroPFRepository.delete(terceiroPF);
 	}
 	
+	@Transactional
 	public void removerPJ(TerceiroPJ terceiroPJ) {
 		terceiroPJRepository.delete(terceiroPJ);
 	}
