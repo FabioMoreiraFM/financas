@@ -6,13 +6,13 @@ CREATE TABLE regras (
 	PRIMARY KEY (idRegras) 	
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-create table tipoDespesa (
+create table tipo_despesa (
 	idTipoDespesa int(11) not null auto_increment,
 	descricao varchar(255) not null,
 	primary key (idTipoDespesa)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-create table tipoReceita (
+create table tipo_receita (
 	idTipoReceita int(11) not null auto_increment,
 	descricao varchar(255) not null,
 	primary key (idTipoReceita)
@@ -47,23 +47,10 @@ create table usuario (
 create table terceiro (
 	idTerceiro int(11) not null auto_increment,
 	descricao varchar(255) not null,
+	documento varchar(20) not null,
+	tipoTerceiro varchar(255) not null,
 	primary key (idTerceiro)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-create table terceiroPF (
-	idTerceiro int(11) not null auto_increment,
-	cpf varchar(15) not null,
-	primary key (idTerceiro),
-	foreign key (idTerceiro) references terceiro(idTerceiro)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-create table terceiroPJ (
-	idTerceiro int(11) not null auto_increment,
-	cnpj varchar(20) not null,
-	primary key (idTerceiro),
-	foreign key (idTerceiro) references terceiro(idTerceiro)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 create table receita (
 	idReceita int(11) not null auto_increment,
@@ -76,7 +63,7 @@ create table receita (
 	idUsuario int(11) not null,
 	primary key (idReceita),
 	foreign key (fonte) references terceiro(idTerceiro),
-	foreign key (idTipoReceita) references tiporeceita(idTipoReceita),
+	foreign key (idTipoReceita) references tipo_receita(idTipoReceita),
 	foreign key (idUsuario) references usuario(idUsuario)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -85,7 +72,7 @@ create table despesa (
 	descricao varchar(255) not null,
 	valor decimal(10,2) not null,
 	parcela int(11) not null,
-	credor int(11) not null,
+	credor int(11),
 	dtInicio date not null,
 	dtFim date,
 	paga tinyint(4),
@@ -95,7 +82,7 @@ create table despesa (
 	idUsuario int(11) not null,
 	primary key (idDespesa),
 	foreign key (credor) references terceiro(idTerceiro),
-	foreign key (idTipoDespesa) references tipodespesa(idTipoDespesa),
+	foreign key (idTipoDespesa) references tipo_despesa(idTipoDespesa),
 	foreign key (idUsuario) references usuario(idUsuario)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

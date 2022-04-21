@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class TerceiroPFModel {
+public class TerceiroModel {
 
 	private Long id;
 	
@@ -13,6 +13,9 @@ public class TerceiroPFModel {
 	private String descricao;
 	
 	@NotBlank
-	private String cpf;
+	private String documento;
+	
+	@NotBlank
+	private String tipoTerceiro;
 	
 }
