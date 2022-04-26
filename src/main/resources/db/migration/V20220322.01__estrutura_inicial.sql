@@ -70,14 +70,13 @@ create table receita (
 create table despesa (
 	idDespesa int(11) not null auto_increment,
 	descricao varchar(255) not null,
-	valor decimal(10,2) not null,
-	parcela int(11) not null,
-	credor int(11),
-	dtInicio date not null,
-	dtFim date,
-	paga tinyint(4),
-	dtPago date,
-	dtVencimento date,
+	valorTotal decimal(10,2) not null,
+	valorParcela decimal(10,2) not null,
+	totalParcelas int(11) not null,
+	credor int(11) not null,
+	mesAnoInicioPgto date not null,
+	dtQuitacao date,
+	diaVencimentoParcela int(4) not null,
 	idTipoDespesa int(11) not null,
 	idUsuario int(11) not null,
 	primary key (idDespesa),
@@ -85,6 +84,17 @@ create table despesa (
 	foreign key (idTipoDespesa) references tipo_despesa(idTipoDespesa),
 	foreign key (idUsuario) references usuario(idUsuario)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+create table parcela_despesa (
+	idParcelaDespesa int(11) not null auto_increment,
+	valor decimal(10,2) not null,
+	nParcela int(11) not null,
+	dtVencimento date not null,
+	dtPagamento date,
+	idDespesa int(11) not null,
+	primary key (idParcelaDespesa),
+	foreign key (idDespesa) references despesa(idDespesa)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
 
 CREATE TABLE agenda (
 	idAgenda int(11) not null auto_increment,
