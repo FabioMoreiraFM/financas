@@ -2,6 +2,7 @@ package com.financas.domain.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +58,14 @@ public class ParcelaDespesaService {
 	
 	public List<ParcelaDespesa> salvar(List<ParcelaDespesa> parcelasDespesa) {		
 		return parcelaDespesaRepository.saveAll(parcelasDespesa);
+	}
+
+	public List<ParcelaDespesa> getParcelasSemAgendamento(LocalDate mesPesquisa) {
+		YearMonth mes = YearMonth.from(mesPesquisa);
+		LocalDate dtInicial = mes.atDay(1);
+		LocalDate dtFinal = mes.atEndOfMonth();
+		
+		return parcelaDespesaRepository.findByAgendaIsNullAndDtVencimentoBetween(dtInicial, dtFinal);
 	}
 	
 }

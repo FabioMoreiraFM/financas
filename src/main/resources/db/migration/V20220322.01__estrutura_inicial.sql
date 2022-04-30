@@ -33,6 +33,18 @@ create table usuario (
 	primary key (idUsuario)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
 
+CREATE TABLE agenda (
+	idAgenda int(11) not null auto_increment,
+	titulo varchar(255) not null,
+	corpoEmail varchar(255) not null,
+	email varchar(255) not null,
+	enviosRealizados int(4) not null,
+	dtPrimeiroEnvio date,
+	dtUltimoEnvio date,
+	envioFinalizado tinyint(4) not null,
+	primary key (idAgenda)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 create table terceiro (
 	idTerceiro int(11) not null auto_increment,
 	descricao varchar(255) not null,
@@ -81,23 +93,11 @@ create table parcela_despesa (
 	dtVencimento date not null,
 	dtPagamento date,
 	idDespesa int(11) not null,
+	idAgenda int(11),
 	primary key (idParcelaDespesa),
-	foreign key (idDespesa) references despesa(idDespesa)
+	foreign key (idDespesa) references despesa(idDespesa),
+	foreign key (idAgenda) references agenda(idAgenda)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
-
-CREATE TABLE agenda (
-	idAgenda int(11) not null auto_increment,
-	corpoEmail varchar(255) not null,
-	email varchar(255) not null,
-	enviosRealizados int(4) not null,
-	dtPrimeiroEnvio date,
-	dtUltimoEnvio date,
-	idReceita int(11),
-	idDespesa int(11),
-	primary key (idAgenda),
-	foreign key (idReceita) references receita(idReceita),
-	foreign key (idDespesa) references despesa(idDespesa)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- financas.revinfo_custom definition
  
@@ -113,6 +113,8 @@ CREATE TABLE `revinfo_custom` (
 CREATE TABLE `hibernate_sequence` (
   `next_val` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO financas.hibernate_sequence (next_val) VALUES(1);
 
 -- financas.despesa_aud definition
 
@@ -146,6 +148,7 @@ CREATE TABLE `parcela_despesa_aud` (
   `nParcela` int(11) DEFAULT NULL,
   `valor` decimal(19,2) DEFAULT NULL,
   `idDespesa` bigint(20) DEFAULT NULL,
+  `idAgenda` bigint(20),
   PRIMARY KEY (`idParcelaDespesa`,`REV`),
   KEY `FKd7v609ks3k6serqelwe7tp0c6` (`REV`),
   CONSTRAINT `FKd7v609ks3k6serqelwe7tp0c6` FOREIGN KEY (`REV`) REFERENCES `revinfo_custom` (`id`)
@@ -241,3 +244,21 @@ CREATE TABLE `tipo_receita_aud` (
   KEY `FK1ri0tlqnadvs0n8d9db38q1s4` (`REV`),
   CONSTRAINT `FK1ri0tlqnadvs0n8d9db38q1s4` FOREIGN KEY (`REV`) REFERENCES `revinfo_custom` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- financas.agenda_aud definition
+
+CREATE TABLE agenda_aud (
+	idAgenda bigint(20) NOT NULL,
+	REV int(11) NOT NULL,
+	REVTYPE tinyint(4) DEFAULT NULL,
+	titulo varchar(255) not null,
+	corpoEmail varchar(255) not null,
+	email varchar(255) not null,
+	enviosRealizados int(4) not null,
+	dtPrimeiroEnvio date,
+	dtUltimoEnvio date,
+	envioFinalizado tinyint(4) not null,
+	primary key (idAgenda, REV),
+	KEY `FK8davn1q42lu9cqqyc9b72kbp2` (`REV`),
+  	CONSTRAINT `FK8davn1q42lu9cqqyc9b72kbp2` FOREIGN KEY (`REV`) REFERENCES `revinfo_custom` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
