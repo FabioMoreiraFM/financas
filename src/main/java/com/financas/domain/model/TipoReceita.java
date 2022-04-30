@@ -8,10 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.envers.Audited;
+
 import lombok.Data;
 
 @Data
 @Entity
+@Audited
 @Table(name = "tipo_receita")
 public class TipoReceita {
 

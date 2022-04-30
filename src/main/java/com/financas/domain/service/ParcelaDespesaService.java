@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.financas.domain.model.Despesa;
 import com.financas.domain.model.ParcelaDespesa;
 import com.financas.domain.repository.ParcelaDespesaRepository;
-import com.financas.domain.utils.DataUtils;
+import com.financas.infrastructure.utils.DataUtils;
 
 @Service
 public class ParcelaDespesaService {

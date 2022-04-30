@@ -17,6 +17,7 @@
 		<java.version>11</java.version>
 		<flyway.version>5.2.4</flyway.version>
 		<modelmapper.version>2.3.9</modelmapper.version>
+		<enver.version>5.6.5.Final</enver.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -69,7 +70,11 @@
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
 			<version>${modelmapper.version}</version>
-		</dependency>		
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-envers</artifactId>
+		</dependency>				
 	</dependencies>
 
 	<build>

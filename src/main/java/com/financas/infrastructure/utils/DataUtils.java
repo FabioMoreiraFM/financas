@@ -1,4 +1,4 @@
-package com.financas.domain.utils;
+package com.financas.infrastructure.utils;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

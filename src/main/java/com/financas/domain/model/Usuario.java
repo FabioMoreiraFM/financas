@@ -11,11 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.envers.Audited;
 
 import lombok.Data;
 
 @Data
 @Entity
+@Audited
 @Table(name = "usuario")
 public class Usuario {
 

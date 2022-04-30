@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import org.hibernate.envers.Audited;
+
 import com.financas.domain.listener.GerarParcelasDespesaListener;
 
 import lombok.Data;
@@ -24,6 +26,7 @@ import lombok.Data;
 @Data
 @EntityListeners({GerarParcelasDespesaListener.class})
 @Entity
+@Audited
 @Table(name = "despesa")
 public class Despesa {
 	
