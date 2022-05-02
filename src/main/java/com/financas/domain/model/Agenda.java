@@ -3,6 +3,7 @@ package com.financas.domain.model;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,11 +32,8 @@ public class Agenda {
 	@Column(name = "idAgenda")
 	private Long id;
 	
-	private String titulo;
-	
-	private String corpoEmail;
-	
-	private String email;
+	@Embedded
+	private Email email;
 	
 	private Integer enviosRealizados;
 	

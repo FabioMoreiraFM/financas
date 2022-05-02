@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.financas.domain.model.Agenda;
+import com.financas.domain.model.Email;
 import com.financas.domain.model.ParcelaDespesa;
 import com.financas.domain.model.Regras;
 import com.financas.domain.repository.AgendaRepository;
@@ -28,6 +29,9 @@ public class AgendaService {
 	@Autowired
 	private RegrasService regrasService;
 	
+	@Autowired
+	private EmailService emailService;
+	
 	@Scheduled(fixedDelay = 1 * 60 * 1000, initialDelay = 6000)
 	public void agendar() {
 		List<ParcelaDespesa> parcelasDoMesSemAgendamento = parcelaDespesaService.getParcelasSemAgendamento(LocalDate.now());
@@ -40,13 +44,18 @@ public class AgendaService {
 	}
 	
 	public Agenda gerar(ParcelaDespesa parcela) {
-		Agenda agenda = Agenda.builder()
+		Email novoEmail = Email.builder()
 				.titulo("[AUTOMÁTICO] Sua despesa está próxima do vencimento!")
 				.corpoEmail("Olá, [fulano]. Sua cobrança com vencimento em [x] está próxima, não esqueça de efetuar o pagamento!")
-				.email("teste@teste.com.br")
+				.to("fabiomoreira.mf@gmail.com")
+				.from("fabiomoreira.mf@gmail.com")
+				.build();
+		
+		Agenda agenda = Agenda.builder()
 				.dtPrimeiroEnvio(parcela.getDtVencimento().minusDays(3))
 				.enviosRealizados(0)
 				.envioFinalizado(false)
+				.email(novoEmail)
 				.build();
 		
 		parcela.setAgenda(agenda);
@@ -54,7 +63,7 @@ public class AgendaService {
 		return agenda;
 	}
 	
-	@Scheduled(fixedDelay = 1 * 60 * 1000, initialDelay = 60000)
+	@Scheduled(fixedDelay = 1 * 10 * 1000, initialDelay = 10000)
 	public void enviarAvisoDtVencimentoProxima() {
 		Regras regras = regrasService.getRegras(1L);
 		
@@ -70,7 +79,7 @@ public class AgendaService {
 	}
 	
 	public void enviar(Agenda agenda) {
-		System.out.println("EMAIL ENVIADO");
+		emailService.enviarEmail(agenda.getEmail());
 	}
 		
 	private void atualizarSituacaoAgenda(Agenda agenda, Integer qtdMaxEnvio) {

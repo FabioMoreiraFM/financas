@@ -19,7 +19,22 @@
 		<modelmapper.version>2.3.9</modelmapper.version>
 		<enver.version>5.6.5.Final</enver.version>
 	</properties>
+	<dependencyManagement>
+	  <dependencies>
+	    <dependency>
+	      <groupId>io.awspring.cloud</groupId>
+	      <artifactId>spring-cloud-aws-dependencies</artifactId>
+	      <version>2.3.0</version>
+	      <type>pom</type>
+	      <scope>import</scope>
+	    </dependency>
+	  </dependencies>
+	</dependencyManagement>	
 	<dependencies>
+	    <dependency>
+	      <groupId>io.awspring.cloud</groupId>
+	      <artifactId>spring-cloud-starter-aws-ses</artifactId>
+	    </dependency>	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -74,7 +89,11 @@
 		<dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-envers</artifactId>
-		</dependency>				
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>      	
 	</dependencies>
 
 	<build>
