@@ -35,7 +35,4 @@ public class ReceitaInputModel {
 	@NotNull
 	private IdInputGenerico tipoReceita;	
 	
-	@Valid
-	@NotNull
-	private IdInputGenerico usuario;
 }

@@ -38,8 +38,4 @@ public class DespesaInputModel {
 	@Valid
 	@NotNull
 	private IdInputGenerico tipoDespesa;
-	
-	@Valid
-	@NotNull
-	private IdInputGenerico usuario;
 }

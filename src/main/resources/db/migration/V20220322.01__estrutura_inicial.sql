@@ -4,19 +4,19 @@ CREATE TABLE regras (
 	fatorDespesaReceitaEnvioEmail double not null default 0.9,
 	enviarEmailDespesasAtrasadas tinyint(1) not null default true,
 	PRIMARY KEY (idRegras) 	
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table tipo_despesa (
 	idTipoDespesa int(11) not null auto_increment,
 	descricao varchar(255) not null,
 	primary key (idTipoDespesa)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table tipo_receita (
 	idTipoReceita int(11) not null auto_increment,
 	descricao varchar(255) not null,
 	primary key (idTipoReceita)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table usuario (
 	idUsuario int(11) not null auto_increment,
@@ -31,7 +31,7 @@ create table usuario (
 	celular varchar(13) not null,
 	dataCadastro datetime,
 	primary key (idUsuario)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
 
 CREATE TABLE agenda (
 	idAgenda int(11) not null auto_increment,
@@ -44,7 +44,7 @@ CREATE TABLE agenda (
 	dtUltimoEnvio date,
 	envioFinalizado tinyint(4) not null,
 	primary key (idAgenda)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table terceiro (
 	idTerceiro int(11) not null auto_increment,
@@ -52,7 +52,7 @@ create table terceiro (
 	documento varchar(20) not null,
 	tipoTerceiro varchar(255) not null,
 	primary key (idTerceiro)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table receita (
 	idReceita int(11) not null auto_increment,
@@ -67,7 +67,7 @@ create table receita (
 	foreign key (fonte) references terceiro(idTerceiro),
 	foreign key (idTipoReceita) references tipo_receita(idTipoReceita),
 	foreign key (idUsuario) references usuario(idUsuario)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table despesa (
 	idDespesa int(11) not null auto_increment,
@@ -85,7 +85,7 @@ create table despesa (
 	foreign key (credor) references terceiro(idTerceiro),
 	foreign key (idTipoDespesa) references tipo_despesa(idTipoDespesa),
 	foreign key (idUsuario) references usuario(idUsuario)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table parcela_despesa (
 	idParcelaDespesa int(11) not null auto_increment,
@@ -98,7 +98,7 @@ create table parcela_despesa (
 	primary key (idParcelaDespesa),
 	foreign key (idDespesa) references despesa(idDespesa),
 	foreign key (idAgenda) references agenda(idAgenda)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
 
 -- financas.revinfo_custom definition
  
@@ -263,4 +263,5 @@ CREATE TABLE agenda_aud (
 	primary key (idAgenda, REV),
 	KEY `FK8davn1q42lu9cqqyc9b72kbp2` (`REV`),
   	CONSTRAINT `FK8davn1q42lu9cqqyc9b72kbp2` FOREIGN KEY (`REV`) REFERENCES `revinfo_custom` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

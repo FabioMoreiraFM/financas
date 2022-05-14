@@ -18,7 +18,9 @@ import com.financas.api.assembler.ReceitaInputConverter;
 import com.financas.api.model.ReceitaModel;
 import com.financas.api.model.input.ReceitaInputModel;
 import com.financas.domain.model.Receita;
+import com.financas.domain.model.Usuario;
 import com.financas.domain.service.ReceitaService;
+import com.financas.infrastructure.security.FinancasSecurity;
 
 @RestController
 @RequestMapping("/receitas")
@@ -32,6 +34,9 @@ public class ReceitaController {
 	
 	@Autowired
 	private ReceitaInputConverter receitaInputConverter;
+	
+	@Autowired
+	private FinancasSecurity financasSecurity;
 	
 	@GetMapping
 	public List<ReceitaModel> listar() {
@@ -50,6 +55,8 @@ public class ReceitaController {
 	@PostMapping
 	public ReceitaModel salvar(@RequestBody @Valid ReceitaInputModel novaReceita) {
 		Receita receita = receitaInputConverter.toDomainObject(novaReceita);
+		receita.setUsuario(new Usuario(financasSecurity.getUsuarioId()));
+		
 		receita = receitaService.salvar(receita);
 		
 		return receitaConverter.toModel(receita);

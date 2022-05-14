@@ -18,7 +18,9 @@ import com.financas.api.assembler.DespesaInputConverter;
 import com.financas.api.model.DespesaModel;
 import com.financas.api.model.input.DespesaInputModel;
 import com.financas.domain.model.Despesa;
+import com.financas.domain.model.Usuario;
 import com.financas.domain.service.DespesaService;
+import com.financas.infrastructure.security.FinancasSecurity;
 
 @RestController
 @RequestMapping(path = "/despesas")
@@ -32,6 +34,9 @@ public class DespesaController {
 	
 	@Autowired 
 	private DespesaService despesaService;
+	
+	@Autowired
+	private FinancasSecurity financasSecurity;
 	
 	@GetMapping
 	public List<DespesaModel> listar() {
@@ -50,6 +55,8 @@ public class DespesaController {
 	@PostMapping
 	public DespesaModel salvar(@RequestBody @Valid DespesaInputModel novaDespesa) {
 		Despesa despesa = inputConverter.toDomainObject(novaDespesa);
+		despesa.setUsuario(new Usuario(financasSecurity.getUsuarioId()));
+		
 		despesa = despesaService.salvar(despesa);
 		
 		return despesaConverter.toModel(despesa); 
