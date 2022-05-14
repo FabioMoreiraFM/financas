@@ -2,6 +2,7 @@ package com.financas.infrastructure.security;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.context.annotation.Bean;
@@ -11,7 +12,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
@@ -25,31 +25,27 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.formLogin()
-			.and()
-				.authorizeRequests()
+			.authorizeRequests()
 				.anyRequest().authenticated()
 			.and()
 				.csrf().disable()
 				.cors()
-			.and()
-				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 				.oauth2ResourceServer().jwt()
 				.jwtAuthenticationConverter(jwtAuthenticationConverter());
 	}
 	
 	private JwtAuthenticationConverter jwtAuthenticationConverter() {
-		var jwtAuthenticationConverter = new JwtAuthenticationConverter();
+		JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+		
 		jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(jwt -> {
-			var authorities = jwt.getClaimAsStringList("authorities");
+			List<String> authorities = jwt.getClaimAsStringList("authorities");
 			
 			if (authorities == null) {
 				authorities = Collections.emptyList();
 			}
 			
-			var scopesAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+			JwtGrantedAuthoritiesConverter scopesAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
 			Collection<GrantedAuthority> grantedAuthorities = scopesAuthoritiesConverter.convert(jwt);
 			
 			grantedAuthorities.addAll(authorities.stream()

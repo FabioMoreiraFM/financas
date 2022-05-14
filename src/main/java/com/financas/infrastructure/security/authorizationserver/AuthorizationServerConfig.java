@@ -60,7 +60,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		endpoints
 			.authenticationManager(authenticationManager)
 			.userDetailsService(userDetailsService)
-			.reuseRefreshTokens(false)
 			.accessTokenConverter(jwtAccessTokenConverter())
 			.tokenEnhancer(enhancerChain)
 			.approvalStore(approvalStore(endpoints.getTokenStore()));
