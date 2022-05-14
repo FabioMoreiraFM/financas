@@ -11,6 +11,16 @@
 				{
 					"name": "Pegar regra por Id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -37,6 +47,16 @@
 				{
 					"name": "Atualizar Regras",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -65,6 +85,16 @@
 				{
 					"name": "Listar Regras",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -88,6 +118,16 @@
 				{
 					"name": "Listar Usuários",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -106,6 +146,16 @@
 				{
 					"name": "Pegar usuário por Id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -132,6 +182,16 @@
 				{
 					"name": "Atualizar Usuário",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -160,11 +220,21 @@
 				{
 					"name": "Novo usuário",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Teste alteração\",    \r\n    \"email\": \"teste_teste@gmail.com\",\r\n    \"celular\": \"49999587844\",\r\n    \"senha\": \"asdasdas44545\",\r\n    \"endereco\": {\r\n        \"cep\": \"88.122-600\",\r\n        \"logradouro\": \"Rua do Teste\",\r\n        \"bairro\": \"Iprigan\",\r\n        \"cidade\": \"Longe\",\r\n        \"uf\": \"SC\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"nome\": \"Teste alteração\",    \r\n    \"email\": \"teste_teste@gmail.com\",\r\n    \"celular\": \"49999587844\",\r\n    \"senha\": \"123\",\r\n    \"endereco\": {\r\n        \"cep\": \"88.122-600\",\r\n        \"logradouro\": \"Rua do Teste\",\r\n        \"bairro\": \"Iprigan\",\r\n        \"cidade\": \"Longe\",\r\n        \"uf\": \"SC\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -187,6 +257,16 @@
 				{
 					"name": "Deletar usuário",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -199,14 +279,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/usuarios/4",
+							"raw": "localhost:8080/usuarios/2",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"usuarios",
-								"4"
+								"2"
 							]
 						}
 					},
@@ -220,6 +300,16 @@
 				{
 					"name": "Listar terceiro",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -238,6 +328,16 @@
 				{
 					"name": "Pegar terceiro por id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -257,6 +357,16 @@
 				{
 					"name": "Novo terceiro",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -284,6 +394,16 @@
 				{
 					"name": "Deletar terceiros",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -317,6 +437,16 @@
 				{
 					"name": "Listar tipo de despesa",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -335,6 +465,16 @@
 				{
 					"name": "Pegar tipo de despesa por id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -354,6 +494,16 @@
 				{
 					"name": "Deletar tipo de despesa",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -382,6 +532,16 @@
 				{
 					"name": "Novo tipo de despesa",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -409,6 +569,16 @@
 				{
 					"name": "Atualizar tipo de despesa",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -442,6 +612,16 @@
 				{
 					"name": "Listar tipo de receita",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -460,6 +640,16 @@
 				{
 					"name": "Pegar tipo de receita por id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -479,6 +669,16 @@
 				{
 					"name": "Deletar tipo de receita",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -507,6 +707,16 @@
 				{
 					"name": "Novo tipo de receita",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -534,6 +744,16 @@
 				{
 					"name": "Atualizar tipo de receita",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -567,6 +787,16 @@
 				{
 					"name": "Listar Despesas",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -585,6 +815,16 @@
 				{
 					"name": "Pegar despesa por id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -611,11 +851,21 @@
 				{
 					"name": "Nova despesa",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"Nova despesa\",\r\n    \"valorParcela\": 500.00,\r\n    \"totalParcelas\": 1,\r\n    \"credor\": {\r\n        \"id\": 1\r\n    },\r\n    \"mesAnoInicioPgto\": \"2022-04-21\",\r\n    \"diaVencimentoParcela\": 31,\r\n    \"tipoDespesa\": {\r\n        \"id\": 1\r\n    },\r\n    \"usuario\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"descricao\": \"Nova despesa\",\r\n    \"valorParcela\": 500.00,\r\n    \"totalParcelas\": 1,\r\n    \"credor\": {\r\n        \"id\": 1\r\n    },\r\n    \"mesAnoInicioPgto\": \"2022-04-21\",\r\n    \"diaVencimentoParcela\": 31,\r\n    \"tipoDespesa\": {\r\n        \"id\": 1\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -638,17 +888,27 @@
 				{
 					"name": "Deletar despesas",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/despesas/13",
+							"raw": "localhost:8080/despesas/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"despesas",
-								"13"
+								"1"
 							]
 						}
 					},
@@ -662,6 +922,16 @@
 				{
 					"name": "Listar Receitas",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -680,6 +950,16 @@
 				{
 					"name": "Pegar receita por id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -706,6 +986,16 @@
 				{
 					"name": "Nova receita",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -733,6 +1023,16 @@
 				{
 					"name": "Deletar receita",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -744,6 +1044,65 @@
 							"path": [
 								"receitas",
 								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autenticação - Tokens",
+			"item": [
+				{
+					"name": "Solicitar token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "web123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "algafood-web",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "fabiomoreira.mf@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/oauth/token",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"oauth",
+								"token"
 							]
 						}
 					},
