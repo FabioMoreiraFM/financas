@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.financas.domain.exception.EntidadeNaoEncontradaException;
+import com.financas.domain.exception.EnumEntidadeException;
 import com.financas.domain.model.Receita;
 import com.financas.domain.model.Terceiro;
 import com.financas.domain.model.TipoReceita;
@@ -31,7 +33,8 @@ public class ReceitaService {
 	}
 	
 	public Receita getById(Long receitaId) {
-		return receitaRepository.getById(receitaId);
+		return receitaRepository.findById(receitaId)
+				.orElseThrow(() -> new EntidadeNaoEncontradaException(EnumEntidadeException.Receitas, receitaId));
 	}
 	
 	public Receita salvar(Receita receita) {
