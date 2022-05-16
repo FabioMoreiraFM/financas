@@ -32,7 +32,7 @@ public class AgendaService {
 	@Autowired
 	private EmailService emailService;
 	
-	@Scheduled(cron = "0 0 23 * * *", initialDelay = 120000)
+	@Scheduled(cron = "0 0 23 * * *")
 	public void agendar() {
 		List<ParcelaDespesa> parcelasDoMesSemAgendamento = parcelaDespesaService.getParcelasSemAgendamento(LocalDate.now());
 		
@@ -63,7 +63,7 @@ public class AgendaService {
 		return agenda;
 	}
 	
-	@Scheduled(cron = "0 0 7 * * *", initialDelay = 120000)
+	@Scheduled(cron = "0 0 7 * * *")
 	public void enviarAvisoDtVencimentoProxima() {
 		Regras regras = regrasService.getRegras(1L);
 		
