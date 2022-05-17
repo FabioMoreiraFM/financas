@@ -33,7 +33,7 @@ public class TipoReceitaService {
 	}
 	
 	@Transactional
-	public void delete(TipoReceita tipoReceita) {
+	public void remover(TipoReceita tipoReceita) {
 		tipoReceitaRepository.delete(tipoReceita);
 	}
 }

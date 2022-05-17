@@ -22,7 +22,7 @@ public class TipoDespesaService {
 		return tipoDespesaRepository.findAll();
 	}
 	
-	public TipoDespesa getTipoDespesa(Long idTipoDespesa) {
+	public TipoDespesa buscar(Long idTipoDespesa) {
 		return tipoDespesaRepository.findById(idTipoDespesa)
 				.orElseThrow(() -> new EntidadeNaoEncontradaException(EnumEntidadeException.TipoDespesa, idTipoDespesa));
 	}
@@ -33,7 +33,7 @@ public class TipoDespesaService {
 	}
 	
 	@Transactional
-	public void delete(TipoDespesa tipoDespesa) {
+	public void remover(TipoDespesa tipoDespesa) {
 		tipoDespesaRepository.delete(tipoDespesa);
 	}
 	

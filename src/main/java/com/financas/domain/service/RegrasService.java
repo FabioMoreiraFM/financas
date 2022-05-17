@@ -22,7 +22,7 @@ public class RegrasService {
 		return regrasRepository.findAll();
 	}
 	
-	public Regras getRegras(Long regraId) {
+	public Regras buscar(Long regraId) {
 		return regrasRepository.findById(regraId)
 				.orElseThrow(() -> new EntidadeNaoEncontradaException(EnumEntidadeException.Regras, regraId));
 	}

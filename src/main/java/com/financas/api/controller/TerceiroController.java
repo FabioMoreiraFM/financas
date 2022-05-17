@@ -34,8 +34,8 @@ public class TerceiroController {
 	}
 	
 	@GetMapping("/{terceiroId}")
-	public TerceiroModel getByIdTerceiro(@PathVariable Long terceiroId) { 
-		return terceiroConverter.toModel(terceiroService.getByIdTerceiro(terceiroId));
+	public TerceiroModel buscar(@PathVariable Long terceiroId) { 
+		return terceiroConverter.toModel(terceiroService.buscar(terceiroId));
 	}
 	
 	@PostMapping
@@ -43,14 +43,14 @@ public class TerceiroController {
 		Terceiro terceiro = new Terceiro();
 		terceiroConverter.copyToDomainObject(terceiroModel, terceiro);
 		
-		terceiro = terceiroService.salvarTerceiro(terceiro);
+		terceiro = terceiroService.salvar(terceiro);
 		
 		return terceiroConverter.toModel(terceiro);
 	}
 	
 	@DeleteMapping("/{terceiroId}")
 	public void remover(@PathVariable Long terceiroId) { 
-		Terceiro terceiro = terceiroService.getByIdTerceiro(terceiroId);
+		Terceiro terceiro = terceiroService.buscar(terceiroId);
 		terceiroService.remover(terceiro);
 	}
 		

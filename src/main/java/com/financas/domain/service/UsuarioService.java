@@ -20,7 +20,7 @@ public class UsuarioService {
 		return usuarioRepository.findAll();
 	}
 	
-	public Usuario getUsuario(Long idUsuario) {
+	public Usuario buscar(Long idUsuario) {
 		return usuarioRepository.findById(idUsuario)
 				.orElseThrow(() -> new EntidadeNaoEncontradaException(EnumEntidadeException.Usuarios, idUsuario));
 	}
@@ -30,7 +30,7 @@ public class UsuarioService {
 	}
 		
 	
-	public void deletar(Usuario usuario) {
+	public void remover(Usuario usuario) {
 		usuarioRepository.delete(usuario);
 	}
 	

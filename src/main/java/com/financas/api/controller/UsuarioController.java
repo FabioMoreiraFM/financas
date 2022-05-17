@@ -31,21 +31,21 @@ public class UsuarioController {
 	UsuarioConverter usuarioConverter;
 	
 	@GetMapping
-	public List<UsuarioModel> getUsuario() {
+	public List<UsuarioModel> listar() {
 		List<Usuario> usuarios = usuarioService.getUsuarios();
 		
 		return usuarioConverter.toCollectionModel(usuarios);
 	}
 	
 	@GetMapping("/{usuarioId}")
-	public UsuarioModel getById(@PathVariable Long usuarioId) {
-		Usuario usuario = usuarioService.getUsuario(usuarioId);
+	public UsuarioModel buscar(@PathVariable Long usuarioId) {
+		Usuario usuario = usuarioService.buscar(usuarioId);
 		
 		return usuarioConverter.toModel(usuario);
 	}
 	
 	@PostMapping
-	public UsuarioModel inserirUsuario(@RequestBody @Valid NovoUsuarioModel usuarioNovo) {
+	public UsuarioModel adicionar(@RequestBody @Valid NovoUsuarioModel usuarioNovo) {
 		Usuario usuario = usuarioConverter.toDomainObject(usuarioNovo);
 		usuario = usuarioService.salvar(usuario);
 		
@@ -53,10 +53,10 @@ public class UsuarioController {
 	}
 	
 	@PutMapping("/{usuarioId}")
-	public UsuarioModel atualizarUsuario(@PathVariable Long usuarioId,
+	public UsuarioModel atualizar(@PathVariable Long usuarioId,
 			@RequestBody @Valid UsuarioModel usuarioAtualizado) {
 		
-		Usuario usuario = usuarioService.getUsuario(usuarioId);
+		Usuario usuario = usuarioService.buscar(usuarioId);
 		
 		usuarioConverter.copyToDomainObject(usuarioAtualizado, usuario);
 		
@@ -66,9 +66,9 @@ public class UsuarioController {
 	}
 	
 	@DeleteMapping("/{usuarioId}")
-	public void deletarUsuario(@PathVariable Long usuarioId) {
-		Usuario usuario = usuarioService.getUsuario(usuarioId);
-		usuarioService.deletar(usuario);
+	public void remover(@PathVariable Long usuarioId) {
+		Usuario usuario = usuarioService.buscar(usuarioId);
+		usuarioService.remover(usuario);
 	}
 	
 	

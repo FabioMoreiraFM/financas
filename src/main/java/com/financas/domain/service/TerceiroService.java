@@ -22,13 +22,13 @@ public class TerceiroService {
 		return terceiroRepository.findAll();
 	}
 
-	public Terceiro getByIdTerceiro(Long terceiroId) { 
+	public Terceiro buscar(Long terceiroId) { 
 		return terceiroRepository.findById(terceiroId)
 				.orElseThrow(() -> new EntidadeNaoEncontradaException(EnumEntidadeException.Terceiro, terceiroId));
 	}
 	
 	@Transactional
-	public Terceiro salvarTerceiro(Terceiro terceiro) {
+	public Terceiro salvar(Terceiro terceiro) {
 		return terceiroRepository.save(terceiro);
 	}
 		

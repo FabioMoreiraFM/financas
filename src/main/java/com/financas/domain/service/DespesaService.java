@@ -32,15 +32,15 @@ public class DespesaService {
 		return despesaRepository.findAll();
 	}
 	
-	public Despesa getDespesa(Long despesaId) {
+	public Despesa buscar(Long despesaId) {
 		return despesaRepository.findById(despesaId)
 				.orElseThrow(() -> new EntidadeNaoEncontradaException(EnumEntidadeException.Despesas, despesaId));
 	}
 	
 	public Despesa salvar(Despesa despesa) {
-		Usuario usuario = usuarioService.getUsuario(despesa.getUsuario().getId());
-		Terceiro credor = terceiroService.getByIdTerceiro(despesa.getCredor().getId());
-		TipoDespesa tipoDespesa = tipoDespesaService.getTipoDespesa(despesa.getTipoDespesa().getId());
+		Usuario usuario = usuarioService.buscar(despesa.getUsuario().getId());
+		Terceiro credor = terceiroService.buscar(despesa.getCredor().getId());
+		TipoDespesa tipoDespesa = tipoDespesaService.buscar(despesa.getTipoDespesa().getId());
 		
 		despesa.setUsuario(usuario);
 		despesa.setCredor(credor);
@@ -49,7 +49,7 @@ public class DespesaService {
 		return despesaRepository.save(despesa);
 	}
 
-	public void deletar(Despesa despesas) {
+	public void remover(Despesa despesas) {
 		despesaRepository.delete(despesas);
 	}
 	

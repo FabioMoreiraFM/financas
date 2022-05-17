@@ -37,8 +37,8 @@ public class TipoDespesaController {
 	}
 	
 	@GetMapping("/{tipoDespesaId}")
-	public TipoDespesaModel getById(@PathVariable Long tipoDespesaId) {
-		return tipoDespesaConverter.toModel(tipoDespesaService.getTipoDespesa(tipoDespesaId));
+	public TipoDespesaModel buscar(@PathVariable Long tipoDespesaId) {
+		return tipoDespesaConverter.toModel(tipoDespesaService.buscar(tipoDespesaId));
 	}
 	
 	@PostMapping
@@ -55,7 +55,7 @@ public class TipoDespesaController {
 	public TipoDespesaModel atualizar(@PathVariable Long tipoDespesaId,
 			@RequestBody @Valid TipoDespesaModel tipoDespesaModel) {
 		
-		TipoDespesa tipoDespesa = tipoDespesaService.getTipoDespesa(tipoDespesaId);
+		TipoDespesa tipoDespesa = tipoDespesaService.buscar(tipoDespesaId);
 		tipoDespesaConverter.copyToDomainObject(tipoDespesaModel, tipoDespesa);
 		tipoDespesa = tipoDespesaService.salvar(tipoDespesa);		
 		
@@ -64,8 +64,8 @@ public class TipoDespesaController {
 	
 	@DeleteMapping("/{tipoDespesaId}")
 	public void remover(@PathVariable Long tipoDespesaId) {
-		TipoDespesa tipoDespesa = tipoDespesaService.getTipoDespesa(tipoDespesaId);
-		tipoDespesaService.delete(tipoDespesa);
+		TipoDespesa tipoDespesa = tipoDespesaService.buscar(tipoDespesaId);
+		tipoDespesaService.remover(tipoDespesa);
 	}
 	
 	

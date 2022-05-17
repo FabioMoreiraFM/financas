@@ -46,14 +46,14 @@ public class DespesaController {
 	}
 	
 	@GetMapping("/{despesaId}")
-	public DespesaModel getById(@PathVariable Long despesaId) {
-		Despesa despesas = despesaService.getDespesa(despesaId);
+	public DespesaModel buscar(@PathVariable Long despesaId) {
+		Despesa despesas = despesaService.buscar(despesaId);
 		
 		return despesaConverter.toModel(despesas);
 	}
 	
 	@PostMapping
-	public DespesaModel salvar(@RequestBody @Valid DespesaInputModel novaDespesa) {
+	public DespesaModel adicionar(@RequestBody @Valid DespesaInputModel novaDespesa) {
 		Despesa despesa = inputConverter.toDomainObject(novaDespesa);
 		despesa.setUsuario(new Usuario(financasSecurity.getUsuarioId()));
 		
@@ -63,10 +63,10 @@ public class DespesaController {
 	}  
 	
 	@DeleteMapping("/{despesaId}")
-	public void deletar(@PathVariable Long despesaId) {
-		Despesa despesas = despesaService.getDespesa(despesaId);
+	public void remover(@PathVariable Long despesaId) {
+		Despesa despesas = despesaService.buscar(despesaId);
 		
-		despesaService.deletar(despesas);
+		despesaService.remover(despesas);
 	}
 	
 }

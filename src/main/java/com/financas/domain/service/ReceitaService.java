@@ -32,14 +32,14 @@ public class ReceitaService {
 		return receitaRepository.findAll();
 	}
 	
-	public Receita getById(Long receitaId) {
+	public Receita buscar(Long receitaId) {
 		return receitaRepository.findById(receitaId)
 				.orElseThrow(() -> new EntidadeNaoEncontradaException(EnumEntidadeException.Receitas, receitaId));
 	}
 	
 	public Receita salvar(Receita receita) {
-		Terceiro fonte = terceiroService.getByIdTerceiro(receita.getFonte().getId());
-		Usuario usuario = usuarioService.getUsuario(receita.getUsuario().getId());
+		Terceiro fonte = terceiroService.buscar(receita.getFonte().getId());
+		Usuario usuario = usuarioService.buscar(receita.getUsuario().getId());
 		TipoReceita tipoReceita = tipoReceitaService.getTipoReceita(receita.getTipoReceita().getId());
 		
 		receita.setFonte(fonte);
@@ -49,7 +49,7 @@ public class ReceitaService {
 		return receitaRepository.save(receita);
 	}
 
-	public void deletar(Receita receita) {
+	public void remover(Receita receita) {
 		receitaRepository.delete(receita);
 	}
 	

@@ -33,15 +33,15 @@ public class RegrasController {
 	}
 	
 	@GetMapping("/{regrasId}")
-	public RegrasModel getById(@PathVariable Long regrasId) {
-		return regrasConverter.toModel(regrasService.getRegras(regrasId));
+	public RegrasModel buscar(@PathVariable Long regrasId) {
+		return regrasConverter.toModel(regrasService.buscar(regrasId));
 	}
 	
 	@PutMapping("/{regrasId}")
 	public RegrasModel atualizar(@PathVariable Long regrasId,
 			@RequestBody @Valid RegrasModel regrasAtualizadas) {
 		
-		Regras regras = regrasService.getRegras(regrasId);
+		Regras regras = regrasService.buscar(regrasId);
 		regrasConverter.copyToDomainObject(regrasAtualizadas, regras);
 		
 		regrasService.salvar(regras);

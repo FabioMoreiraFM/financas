@@ -46,14 +46,14 @@ public class ReceitaController {
 	}
 	
 	@GetMapping("/{receitaId}")
-	public ReceitaModel getReceita(@PathVariable Long receitaId) {
-		Receita receita = receitaService.getById(receitaId);
+	public ReceitaModel buscar(@PathVariable Long receitaId) {
+		Receita receita = receitaService.buscar(receitaId);
 		
 		return receitaConverter.toModel(receita);
 	}
 	
 	@PostMapping
-	public ReceitaModel salvar(@RequestBody @Valid ReceitaInputModel novaReceita) {
+	public ReceitaModel adicionar(@RequestBody @Valid ReceitaInputModel novaReceita) {
 		Receita receita = receitaInputConverter.toDomainObject(novaReceita);
 		receita.setUsuario(new Usuario(financasSecurity.getUsuarioId()));
 		
@@ -63,9 +63,9 @@ public class ReceitaController {
 	}
 	
 	@DeleteMapping("/{receitaId}")
-	public void deletar(@PathVariable Long receitaId) {
-		Receita receita = receitaService.getById(receitaId);
-		receitaService.deletar(receita);
+	public void remover(@PathVariable Long receitaId) {
+		Receita receita = receitaService.buscar(receitaId);
+		receitaService.remover(receita);
 	}
 	
 }

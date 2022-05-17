@@ -65,7 +65,7 @@ public class AgendaService {
 	
 	@Scheduled(cron = "0 0 7 * * *")
 	public void enviarAvisoDtVencimentoProxima() {
-		Regras regras = regrasService.getRegras(1L);
+		Regras regras = regrasService.buscar(1L);
 		
 		Integer qtdMaxEnvio = regras.getQtdMaxEnvioAgendamento();
 		

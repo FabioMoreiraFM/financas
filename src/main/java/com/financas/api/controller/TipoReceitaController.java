@@ -37,7 +37,7 @@ public class TipoReceitaController {
 	}
 	
 	@GetMapping("/{idTipoReceita}")
-	public TipoReceitaModel getById(@PathVariable Long idTipoReceita) {
+	public TipoReceitaModel buscar(@PathVariable Long idTipoReceita) {
 		return tipoReceitaConverter.toModel(tipoReceitaService.getTipoReceita(idTipoReceita));
 	}
 	
@@ -52,7 +52,7 @@ public class TipoReceitaController {
 	@DeleteMapping("/{idTipoReceita}")
 	public void remover(@PathVariable Long idTipoReceita) {
 		TipoReceita tipoReceita = tipoReceitaService.getTipoReceita(idTipoReceita);
-		tipoReceitaService.delete(tipoReceita);
+		tipoReceitaService.remover(tipoReceita);
 	}
 	
 	@PutMapping("/{idTipoReceita}")
