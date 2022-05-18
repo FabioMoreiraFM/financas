@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financas.api.assembler.UsuarioConverter;
+import com.financas.api.controller.openapi.UsuarioControllerOpenApi;
 import com.financas.api.model.NovoUsuarioModel;
 import com.financas.api.model.UsuarioModel;
 import com.financas.domain.model.Usuario;
@@ -22,7 +23,7 @@ import com.financas.domain.service.UsuarioService;
 
 @RestController
 @RequestMapping(path = "/usuarios")
-public class UsuarioController {
+public class UsuarioController implements UsuarioControllerOpenApi{
 
 	@Autowired
 	UsuarioService usuarioService;

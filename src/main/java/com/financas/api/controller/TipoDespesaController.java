@@ -17,13 +17,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financas.api.assembler.TipoDespesaConverter;
+import com.financas.api.controller.openapi.TipoDespesaControllerOpenApi;
 import com.financas.api.model.TipoDespesaModel;
 import com.financas.domain.model.TipoDespesa;
 import com.financas.domain.service.TipoDespesaService;
 
 @RestController
 @RequestMapping(path = "/tipos-despesas")
-public class TipoDespesaController {
+public class TipoDespesaController implements TipoDespesaControllerOpenApi{
 
 	@Autowired
 	private TipoDespesaService tipoDespesaService;

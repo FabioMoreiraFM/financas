@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financas.api.assembler.TerceiroConverter;
+import com.financas.api.controller.openapi.TerceiroControllerOpenApi;
 import com.financas.api.model.TerceiroModel;
 import com.financas.domain.model.Terceiro;
 import com.financas.domain.service.TerceiroService;
 
 @RestController
 @RequestMapping(path = "/terceiros")
-public class TerceiroController {
+public class TerceiroController implements TerceiroControllerOpenApi{
 
 	@Autowired
 	private TerceiroConverter terceiroConverter;

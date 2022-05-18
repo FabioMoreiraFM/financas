@@ -17,13 +17,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financas.api.assembler.TipoReceitaConverter;
+import com.financas.api.controller.openapi.TipoReceitaControllerOpenApi;
 import com.financas.api.model.TipoReceitaModel;
 import com.financas.domain.model.TipoReceita;
 import com.financas.domain.service.TipoReceitaService;
 
 @RestController
 @RequestMapping(path = "/tipos-receitas")
-public class TipoReceitaController {
+public class TipoReceitaController implements TipoReceitaControllerOpenApi{
 	
 	@Autowired
 	private TipoReceitaConverter tipoReceitaConverter;

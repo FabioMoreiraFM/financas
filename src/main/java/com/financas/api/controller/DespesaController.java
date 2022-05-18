@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.financas.api.assembler.DespesaConverter;
 import com.financas.api.assembler.DespesaInputConverter;
+import com.financas.api.controller.openapi.DespesaControllerOpenApi;
 import com.financas.api.model.DespesaModel;
 import com.financas.api.model.input.DespesaInputModel;
 import com.financas.domain.model.Despesa;
@@ -24,7 +25,7 @@ import com.financas.infrastructure.security.FinancasSecurity;
 
 @RestController
 @RequestMapping(path = "/despesas")
-public class DespesaController {
+public class DespesaController implements DespesaControllerOpenApi {
 
 	@Autowired
 	private DespesaConverter despesaConverter;

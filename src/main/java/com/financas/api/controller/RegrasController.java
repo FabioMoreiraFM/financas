@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financas.api.assembler.RegrasConverter;
+import com.financas.api.controller.openapi.RegrasControllerOpenApi;
 import com.financas.api.model.RegrasModel;
 import com.financas.domain.model.Regras;
 import com.financas.domain.service.RegrasService;
 
 @RestController
 @RequestMapping(path = "/regras")
-public class RegrasController {
+public class RegrasController implements RegrasControllerOpenApi{
 	
 	@Autowired
 	private RegrasService regrasService;

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.financas.api.assembler.ReceitaConverter;
 import com.financas.api.assembler.ReceitaInputConverter;
+import com.financas.api.controller.openapi.ReceitaControllerOpenApi;
 import com.financas.api.model.ReceitaModel;
 import com.financas.api.model.input.ReceitaInputModel;
 import com.financas.domain.model.Receita;
@@ -24,7 +25,7 @@ import com.financas.infrastructure.security.FinancasSecurity;
 
 @RestController
 @RequestMapping("/receitas")
-public class ReceitaController {
+public class ReceitaController implements ReceitaControllerOpenApi{
 
 	@Autowired
 	private ReceitaService receitaService;
