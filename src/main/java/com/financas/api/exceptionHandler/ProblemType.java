@@ -7,7 +7,8 @@ public enum ProblemType {
 
 	RECURSO_NAO_ENCONTRADO("Recurso não encontrado"), 
 	DADOS_INVALIDOS("Dados inválidos"),
-	MENSAGEM_INCOMPREENSIVEL("Mensagem incompreensível");
+	MENSAGEM_INCOMPREENSIVEL("Mensagem incompreensível"),
+	PARAMETRO_INVALIDO("Parâmetro inválido");
 	
 	private String title;
 	

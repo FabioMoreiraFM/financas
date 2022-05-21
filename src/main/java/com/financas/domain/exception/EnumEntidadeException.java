@@ -4,7 +4,7 @@ public enum EnumEntidadeException {
 
 	Regras("regras"),
 	TipoDespesa("tipos-despesas"),
-	TipoReceita("tipos-receita"),
+	TipoReceita("tipos-receitas"),
 	Terceiro("terceiros"),
 	Usuarios("usuarios"),
 	Despesas("despesas"),
