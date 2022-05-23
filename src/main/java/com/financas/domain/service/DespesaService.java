@@ -3,8 +3,10 @@ package com.financas.domain.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.financas.domain.exception.EntidadeEmUsoException;
 import com.financas.domain.exception.EntidadeNaoEncontradaException;
 import com.financas.domain.exception.EnumEntidadeException;
 import com.financas.domain.model.Despesa;
@@ -49,8 +51,13 @@ public class DespesaService {
 		return despesaRepository.save(despesa);
 	}
 
-	public void remover(Despesa despesas) {
-		despesaRepository.delete(despesas);
+	public void remover(Despesa despesa) {
+		try {
+			despesaRepository.delete(despesa);
+			despesaRepository.flush();
+		} catch (DataIntegrityViolationException e) {
+			throw new EntidadeEmUsoException(EnumEntidadeException.Despesas, despesa.getId());
+		}
 	}
 	
 }

@@ -5,8 +5,10 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.financas.domain.exception.EntidadeEmUsoException;
 import com.financas.domain.exception.EntidadeNaoEncontradaException;
 import com.financas.domain.exception.EnumEntidadeException;
 import com.financas.domain.model.TipoReceita;
@@ -34,6 +36,11 @@ public class TipoReceitaService {
 	
 	@Transactional
 	public void remover(TipoReceita tipoReceita) {
-		tipoReceitaRepository.delete(tipoReceita);
+		try {
+			tipoReceitaRepository.delete(tipoReceita);
+			tipoReceitaRepository.flush();
+		} catch (DataIntegrityViolationException e) {
+			throw new EntidadeEmUsoException(EnumEntidadeException.TipoReceita, tipoReceita.getId());
+		}
 	}
 }

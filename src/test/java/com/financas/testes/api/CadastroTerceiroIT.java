@@ -48,6 +48,19 @@ class CadastroTerceiroIT extends GenericIT {
 	}
 	
 	@Test
+	void deletarTerceiroEmUsoPorId() {
+		given()
+			.auth()
+				.oauth2(accessToken)
+			.accept(ContentType.JSON)
+			.pathParam("terceiroId", 1L)
+		.when()
+			.delete("/{terceiroId}")
+		.then()
+			.statusCode(HttpStatus.CONFLICT.value());
+	}
+	
+	@Test
 	void deletarTerceiroPJPorId() {
 		given()
 			.auth()
@@ -61,7 +74,7 @@ class CadastroTerceiroIT extends GenericIT {
 	}
 	
 	@Test
-	void adicionarTerceiroPJPorId() {
+	void adicionarNovoTerceiroPJ() {
 		String jsonCorretoNovoTerceiro = ResourceUtils.getContentFromResource(
 				"/json/correto/novo-terceiro.json");
 		

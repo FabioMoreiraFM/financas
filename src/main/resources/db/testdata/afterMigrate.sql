@@ -32,6 +32,7 @@ INSERT INTO regras (idRegras, qtdMaxEnvioAgendamento, fatorDespesaReceitaEnvioEm
 INSERT INTO terceiro (idTerceiro, descricao, documento, tipoTerceiro) VALUES(1, 'Terceiro PF', '52737850061', 'PF');
 INSERT INTO terceiro (idTerceiro, descricao, documento, tipoTerceiro) VALUES(2, 'Terceiro PJ', '62282040000120', 'PJ');
 INSERT INTO tipo_despesa (idTipoDespesa, descricao) VALUES(1, 'Boleto');
+INSERT INTO tipo_despesa (idTipoDespesa, descricao) VALUES(2, 'Cartão de Crédito');
 INSERT INTO tipo_receita (idTipoReceita, descricao) VALUES(1, 'Salário');
 -- Senha 123
 INSERT INTO usuario (idUsuario, nome, email, senha, cep, logradouro, bairro, cidade, uf, celular, dataCadastro) VALUES(1, 'Fabio Moreira', 'teste@teste.com', '$2y$12$NSsM4gEOR7MKogflKR7GMeYugkttjNhAJMvFdHrBLaLp2HzlggP5W', '88111600', 'Rua do teste', 'teste', 'teste', 'sc', '4899999', '2022-05-14 00:00:00.0');

@@ -18,6 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.financas.domain.exception.EntidadeEmUsoException;
 import com.financas.domain.exception.EntidadeNaoEncontradaException;
 
 
@@ -111,6 +112,20 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		}
 	
 		return super.handleTypeMismatch(ex, headers, status, request);
+	}
+	
+	@ExceptionHandler(EntidadeEmUsoException.class)
+	public ResponseEntity<?> handleEntidadeEmUso(EntidadeEmUsoException ex, WebRequest request) {
+		
+		HttpStatus status = HttpStatus.CONFLICT;
+		ProblemType problemType = ProblemType.ENTIDADE_EM_USO;
+		String detail = ex.getMessage();
+		
+		ProblemDetails problem = createProblemBuilder(status, problemType, detail)
+				.userMessage(detail)
+				.build();
+		
+		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
 	}
 	
 	private ResponseEntity<Object> handleMethodArgumentTypeMismatch(

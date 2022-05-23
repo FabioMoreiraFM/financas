@@ -3,8 +3,10 @@ package com.financas.domain.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.financas.domain.exception.EntidadeEmUsoException;
 import com.financas.domain.exception.EntidadeNaoEncontradaException;
 import com.financas.domain.exception.EnumEntidadeException;
 import com.financas.domain.model.Usuario;
@@ -31,7 +33,12 @@ public class UsuarioService {
 		
 	
 	public void remover(Usuario usuario) {
-		usuarioRepository.delete(usuario);
+		try {
+			usuarioRepository.delete(usuario);
+			usuarioRepository.flush();
+		} catch (DataIntegrityViolationException e) {
+			throw new EntidadeEmUsoException(EnumEntidadeException.Terceiro, usuario.getId());
+		}
 	}
 	
 }
