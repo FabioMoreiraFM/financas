@@ -7,9 +7,11 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.financas.domain.listener.event.AgendaEvent;
 import com.financas.domain.model.Agenda;
 import com.financas.domain.model.Email;
 import com.financas.domain.model.ParcelaDespesa;
@@ -29,8 +31,8 @@ public class AgendaService {
 	@Autowired
 	private RegrasService regrasService;
 	
-	@Autowired
-	private EmailService emailService;
+    @Autowired
+    private ApplicationEventPublisher applicationEventPublisher;
 	
 	@Scheduled(cron = "0 0 23 * * *")
 	public void agendar() {
@@ -79,7 +81,8 @@ public class AgendaService {
 	}
 	
 	public void enviar(Agenda agenda) {
-		emailService.enviarEmail(agenda.getEmail());
+		AgendaEvent agendaEvent = new AgendaEvent(agenda);
+		applicationEventPublisher.publishEvent(agendaEvent);
 	}
 		
 	private void atualizarSituacaoAgenda(Agenda agenda, Integer qtdMaxEnvio) {
