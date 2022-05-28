@@ -28,12 +28,7 @@ public class ParcelaDespesaService {
 		
 		List<ParcelaDespesa> parcelas = new ArrayList<ParcelaDespesa>();
 		for (int nParcela = 1; nParcela <= totalParcelas; nParcela++) {
-			ParcelaDespesa novaParcela = ParcelaDespesa.builder()
-					.valor(valorParcela)
-					.numeroParcela(nParcela)
-					.dtVencimento(dtVencimento)
-					.despesa(despesa)
-					.build();
+			ParcelaDespesa novaParcela = gerarNovaParcela(despesa, valorParcela, dtVencimento, nParcela);
 			
 			parcelas.add(novaParcela);
 			
@@ -42,6 +37,16 @@ public class ParcelaDespesaService {
 		}
 		
 		return parcelas;
+	}
+
+	private ParcelaDespesa gerarNovaParcela(Despesa despesa, BigDecimal valorParcela, LocalDate dtVencimento, int nParcela) {
+		ParcelaDespesa novaParcela = ParcelaDespesa.builder()
+				.valor(valorParcela)
+				.numeroParcela(nParcela)
+				.dtVencimento(dtVencimento)
+				.despesa(despesa)
+				.build();
+		return novaParcela;
 	}
 
 	private LocalDate configurarDtVencimentoParcela(LocalDate dtVencimento, Integer diaVencimentoParcela) {
