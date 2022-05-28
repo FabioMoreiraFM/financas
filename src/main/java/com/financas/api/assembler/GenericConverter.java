@@ -1,7 +1,5 @@
 package com.financas.api.assembler;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,8 +7,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.financas.infrastructure.utils.GenericsUtils;
+
 @Component
-public abstract class GenericConverter<X, T> {
+public class GenericConverter<X, T> {
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -18,29 +18,17 @@ public abstract class GenericConverter<X, T> {
 	private Class<X> xType;
 	private Class<T> tType;
 	
-	@SuppressWarnings("unchecked")
-	public GenericConverter() {
-		this.xType = (Class<X>) getGenericClassType(0);
-		this.tType = (Class<T>) getGenericClassType(1);
+	public GenericConverter(Class<X> xType, Class<T> tType) {
+		this.xType = xType;
+		this.tType = tType;
 	}
 	
-	private Type getGenericClassType(int index) {
-		Type type = getClass().getGenericSuperclass(); 
-		while(!(type instanceof ParameterizedType)) { 
-			if (type == null) { 
-				return null; 
-			}
-			
-			if (type instanceof ParameterizedType) {
-				type = ((Class<?>) ((ParameterizedType) type).getRawType()).getGenericSuperclass();
-			} else {
-				type = ((Class<?>) type).getGenericSuperclass();
-			} 
-		}
-		
-		return ((ParameterizedType) type).getActualTypeArguments()[index];
+	@SuppressWarnings("unchecked")
+	public GenericConverter() {
+		this.xType = (Class<X>) GenericsUtils.getGenericClassType(getClass(), 0);
+		this.tType = (Class<T>) GenericsUtils.getGenericClassType(getClass(), 1);
 	}
- 
+	 
 	public void copyToDomainObject(X regrasModel, T regras) {				
 		modelMapper.map(regrasModel, regras);
 	}

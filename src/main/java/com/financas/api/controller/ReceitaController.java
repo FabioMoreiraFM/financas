@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.financas.api.assembler.ReceitaConverter;
-import com.financas.api.assembler.ReceitaInputConverter;
+import com.financas.api.assembler.GenericConverter;
 import com.financas.api.controller.openapi.ReceitaControllerOpenApi;
 import com.financas.api.model.ReceitaModel;
 import com.financas.api.model.input.ReceitaInputModel;
@@ -31,10 +30,10 @@ public class ReceitaController implements ReceitaControllerOpenApi{
 	private ReceitaService receitaService;
 	
 	@Autowired
-	private ReceitaConverter receitaConverter;
+	private GenericConverter<ReceitaModel, Receita> receitaConverter;
 	
 	@Autowired
-	private ReceitaInputConverter receitaInputConverter;
+	private GenericConverter<ReceitaInputModel, Receita> receitaInputConverter;
 	
 	@Autowired
 	private FinancasSecurity financasSecurity;

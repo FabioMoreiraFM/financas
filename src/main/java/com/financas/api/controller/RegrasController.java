@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.financas.api.assembler.RegrasConverter;
-import com.financas.api.assembler.RegrasInputConverter;
+import com.financas.api.assembler.GenericConverter;
 import com.financas.api.controller.openapi.RegrasControllerOpenApi;
 import com.financas.api.model.RegrasModel;
 import com.financas.api.model.input.RegrasInputModel;
@@ -28,10 +27,10 @@ public class RegrasController implements RegrasControllerOpenApi{
 	private RegrasService regrasService;
 	
 	@Autowired
-	private RegrasConverter regrasConverter;
+	private GenericConverter<RegrasModel, Regras> regrasConverter;
 	
 	@Autowired
-	private RegrasInputConverter regrasInputConverter;
+	private GenericConverter<RegrasInputModel, Regras> regrasInputConverter;
 	
 	@GetMapping
 	public List<RegrasModel> listar() {

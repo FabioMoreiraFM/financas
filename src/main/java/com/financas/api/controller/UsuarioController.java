@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.financas.api.assembler.UsuarioConverter;
-import com.financas.api.assembler.UsuarioInputConverter;
+import com.financas.api.assembler.GenericConverter;
 import com.financas.api.controller.openapi.UsuarioControllerOpenApi;
 import com.financas.api.model.UsuarioModel;
 import com.financas.api.model.input.UsuarioInputComSenhaModel;
@@ -30,10 +29,10 @@ public class UsuarioController implements UsuarioControllerOpenApi{
 	private UsuarioService usuarioService;
 	
 	@Autowired
-	private UsuarioConverter usuarioConverter;
+	private GenericConverter<UsuarioModel, Usuario> usuarioConverter;
 	
 	@Autowired
-	private UsuarioInputConverter usuarioInputConverter;
+	private GenericConverter<UsuarioInputComSenhaModel, Usuario> usuarioInputConverter;
 	
 	@GetMapping
 	public List<UsuarioModel> listar() {

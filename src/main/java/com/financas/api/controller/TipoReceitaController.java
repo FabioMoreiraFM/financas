@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.financas.api.assembler.TipoReceitaConverter;
-import com.financas.api.assembler.TipoReceitaInputConverter;
+import com.financas.api.assembler.GenericConverter;
 import com.financas.api.controller.openapi.TipoReceitaControllerOpenApi;
 import com.financas.api.model.TipoReceitaModel;
 import com.financas.api.model.input.TipoReceitaInputModel;
@@ -29,13 +28,13 @@ import com.financas.domain.service.TipoReceitaService;
 public class TipoReceitaController implements TipoReceitaControllerOpenApi{
 	
 	@Autowired
-	private TipoReceitaConverter tipoReceitaConverter;
+	private GenericConverter<TipoReceitaModel, TipoReceita> tipoReceitaConverter;
 	
 	@Autowired
 	private TipoReceitaService tipoReceitaService;
 	
 	@Autowired
-	private TipoReceitaInputConverter tipoReceitaInputConverter;
+	private GenericConverter<TipoReceitaInputModel, TipoReceita> tipoReceitaInputConverter;
 	
 	@GetMapping
 	public List<TipoReceitaModel> listar() {

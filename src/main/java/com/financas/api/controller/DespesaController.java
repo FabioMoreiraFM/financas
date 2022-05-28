@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.financas.api.assembler.DespesaConverter;
-import com.financas.api.assembler.DespesaInputConverter;
+import com.financas.api.assembler.GenericConverter;
 import com.financas.api.controller.openapi.DespesaControllerOpenApi;
 import com.financas.api.model.DespesaModel;
 import com.financas.api.model.input.DespesaInputModel;
@@ -28,10 +27,10 @@ import com.financas.infrastructure.security.FinancasSecurity;
 public class DespesaController implements DespesaControllerOpenApi {
 
 	@Autowired
-	private DespesaConverter despesaConverter;
+	private GenericConverter<DespesaModel, Despesa> despesaConverter;
 	
 	@Autowired
-	private DespesaInputConverter inputConverter;
+	private GenericConverter<DespesaInputModel, Despesa> inputConverter;
 	
 	@Autowired 
 	private DespesaService despesaService;

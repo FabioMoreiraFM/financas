@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.financas.api.assembler.TipoDespesaConverter;
-import com.financas.api.assembler.TipoDespesaInputConverter;
+import com.financas.api.assembler.GenericConverter;
 import com.financas.api.controller.openapi.TipoDespesaControllerOpenApi;
 import com.financas.api.model.TipoDespesaModel;
 import com.financas.api.model.input.TipoDespesaInputModel;
@@ -32,10 +31,10 @@ public class TipoDespesaController implements TipoDespesaControllerOpenApi{
 	private TipoDespesaService tipoDespesaService;
 	
 	@Autowired 
-	private TipoDespesaConverter tipoDespesaConverter;
+	private GenericConverter<TipoDespesaModel, TipoDespesa> tipoDespesaConverter;
 	
 	@Autowired 
-	private TipoDespesaInputConverter tipoDespesaInputConverter;
+	private GenericConverter<TipoDespesaInputModel, TipoDespesa> tipoDespesaInputConverter;
 	
 	@GetMapping
 	public List<TipoDespesaModel> listar() {
