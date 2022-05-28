@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financas.api.assembler.RegrasConverter;
+import com.financas.api.assembler.RegrasInputConverter;
 import com.financas.api.controller.openapi.RegrasControllerOpenApi;
 import com.financas.api.model.RegrasModel;
+import com.financas.api.model.input.RegrasInputModel;
 import com.financas.domain.model.Regras;
 import com.financas.domain.service.RegrasService;
 
@@ -26,7 +28,10 @@ public class RegrasController implements RegrasControllerOpenApi{
 	private RegrasService regrasService;
 	
 	@Autowired
-	private RegrasConverter regrasConverter; 
+	private RegrasConverter regrasConverter;
+	
+	@Autowired
+	private RegrasInputConverter regrasInputConverter;
 	
 	@GetMapping
 	public List<RegrasModel> listar() {
@@ -40,10 +45,10 @@ public class RegrasController implements RegrasControllerOpenApi{
 	
 	@PutMapping("/{regrasId}")
 	public RegrasModel atualizar(@PathVariable Long regrasId,
-			@RequestBody @Valid RegrasModel regrasAtualizadas) {
+			@RequestBody @Valid RegrasInputModel regrasAtualizadas) {
 		
 		Regras regras = regrasService.buscar(regrasId);
-		regrasConverter.copyToDomainObject(regrasAtualizadas, regras);
+		regrasInputConverter.copyToDomainObject(regrasAtualizadas, regras);
 		
 		regrasService.salvar(regras);
 		

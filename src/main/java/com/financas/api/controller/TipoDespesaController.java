@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financas.api.assembler.TipoDespesaConverter;
+import com.financas.api.assembler.TipoDespesaInputConverter;
 import com.financas.api.controller.openapi.TipoDespesaControllerOpenApi;
 import com.financas.api.model.TipoDespesaModel;
+import com.financas.api.model.input.TipoDespesaInputModel;
 import com.financas.domain.model.TipoDespesa;
 import com.financas.domain.service.TipoDespesaService;
 
@@ -32,6 +34,9 @@ public class TipoDespesaController implements TipoDespesaControllerOpenApi{
 	@Autowired 
 	private TipoDespesaConverter tipoDespesaConverter;
 	
+	@Autowired 
+	private TipoDespesaInputConverter tipoDespesaInputConverter;
+	
 	@GetMapping
 	public List<TipoDespesaModel> listar() {
 		return tipoDespesaConverter.toCollectionModel(tipoDespesaService.getTiposDespesas());
@@ -44,9 +49,9 @@ public class TipoDespesaController implements TipoDespesaControllerOpenApi{
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public TipoDespesaModel adicionar(@RequestBody @Valid TipoDespesaModel tipoDespesaModel) {
+	public TipoDespesaModel adicionar(@RequestBody @Valid TipoDespesaInputModel tipoDespesaModel) {
 		TipoDespesa tipoDespesa = new TipoDespesa();
-		tipoDespesaConverter.copyToDomainObject(tipoDespesaModel, tipoDespesa);
+		tipoDespesaInputConverter.copyToDomainObject(tipoDespesaModel, tipoDespesa);
 		
 		tipoDespesa = tipoDespesaService.salvar(tipoDespesa);
 		return tipoDespesaConverter.toModel(tipoDespesa);
@@ -54,10 +59,10 @@ public class TipoDespesaController implements TipoDespesaControllerOpenApi{
 	
 	@PutMapping("/{tipoDespesaId}")
 	public TipoDespesaModel atualizar(@PathVariable Long tipoDespesaId,
-			@RequestBody @Valid TipoDespesaModel tipoDespesaModel) {
+			@RequestBody @Valid TipoDespesaInputModel tipoDespesaModel) {
 		
 		TipoDespesa tipoDespesa = tipoDespesaService.buscar(tipoDespesaId);
-		tipoDespesaConverter.copyToDomainObject(tipoDespesaModel, tipoDespesa);
+		tipoDespesaInputConverter.copyToDomainObject(tipoDespesaModel, tipoDespesa);
 		tipoDespesa = tipoDespesaService.salvar(tipoDespesa);		
 		
 		return tipoDespesaConverter.toModel(tipoDespesa);

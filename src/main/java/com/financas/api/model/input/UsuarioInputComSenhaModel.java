@@ -1,4 +1,4 @@
-package com.financas.api.model;
+package com.financas.api.model.input;
 
 import javax.validation.constraints.NotBlank;
 
@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class NovoUsuarioModel extends UsuarioModel{
+public class UsuarioInputComSenhaModel extends UsuarioInputModel{
 
 	@NotBlank
 	private String senha;

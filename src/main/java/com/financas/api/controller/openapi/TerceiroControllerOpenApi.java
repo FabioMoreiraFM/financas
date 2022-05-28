@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.financas.api.exceptionHandler.ProblemDetails;
 import com.financas.api.model.TerceiroModel;
+import com.financas.api.model.input.TerceiroInputModel;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,7 +34,7 @@ public interface TerceiroControllerOpenApi {
 		@ApiResponse(code = 400, message = "ID do terceiro inválido", response = ProblemDetails.class),
 		@ApiResponse(code = 404, message = "Terceiro não encontrado", response = ProblemDetails.class)
 	})
-	public TerceiroModel adicionar(@RequestBody @Valid TerceiroModel terceiroModel);
+	public TerceiroModel adicionar(@RequestBody @Valid TerceiroInputModel terceiroModel);
 	
 	@ApiOperation("Remove um terceiro por ID.")
 	@ApiResponses({

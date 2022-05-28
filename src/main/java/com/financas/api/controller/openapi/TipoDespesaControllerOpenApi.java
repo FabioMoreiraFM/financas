@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.financas.api.exceptionHandler.ProblemDetails;
 import com.financas.api.model.TipoDespesaModel;
+import com.financas.api.model.input.TipoDespesaInputModel;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,7 +34,7 @@ public interface TipoDespesaControllerOpenApi {
 		@ApiResponse(code = 400, message = "ID do tipo de despesa inválido", response = ProblemDetails.class),
 		@ApiResponse(code = 404, message = "Tipo de despesa não encontrado", response = ProblemDetails.class)
 	})
-	public TipoDespesaModel adicionar(@RequestBody @Valid TipoDespesaModel tipoDespesaModel);
+	public TipoDespesaModel adicionar(@RequestBody @Valid TipoDespesaInputModel tipoDespesaModel);
 	
 	@ApiOperation("Atualiza um tipo de despesa por ID")
 	@ApiResponses({
@@ -41,7 +42,7 @@ public interface TipoDespesaControllerOpenApi {
 		@ApiResponse(code = 404, message = "Tipo de despesa não encontrado", response = ProblemDetails.class)
 	})
 	public TipoDespesaModel atualizar(@PathVariable Long tipoDespesaId,
-			@RequestBody @Valid TipoDespesaModel tipoDespesaModel);
+			@RequestBody @Valid TipoDespesaInputModel tipoDespesaModel);
 	
 	@ApiOperation("Remove um tipo de despesa por ID")
 	@ApiResponses({

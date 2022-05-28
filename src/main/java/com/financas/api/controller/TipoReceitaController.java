@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financas.api.assembler.TipoReceitaConverter;
+import com.financas.api.assembler.TipoReceitaInputConverter;
 import com.financas.api.controller.openapi.TipoReceitaControllerOpenApi;
 import com.financas.api.model.TipoReceitaModel;
+import com.financas.api.model.input.TipoReceitaInputModel;
 import com.financas.domain.model.TipoReceita;
 import com.financas.domain.service.TipoReceitaService;
 
@@ -32,6 +34,9 @@ public class TipoReceitaController implements TipoReceitaControllerOpenApi{
 	@Autowired
 	private TipoReceitaService tipoReceitaService;
 	
+	@Autowired
+	private TipoReceitaInputConverter tipoReceitaInputConverter;
+	
 	@GetMapping
 	public List<TipoReceitaModel> listar() {
 		return tipoReceitaConverter.toCollectionModel(tipoReceitaService.getTiposReceitas());
@@ -44,11 +49,14 @@ public class TipoReceitaController implements TipoReceitaControllerOpenApi{
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public TipoReceitaModel adicionar(@RequestBody TipoReceita tipoReceita) {
+	public TipoReceitaModel adicionar(@RequestBody TipoReceitaInputModel tipoReceitaModel) {
+		TipoReceita tipoReceita = new TipoReceita();
+		tipoReceitaInputConverter.copyToDomainObject(tipoReceitaModel, tipoReceita);
+		
 		tipoReceita = tipoReceitaService.salvar(tipoReceita);
 		
 		return tipoReceitaConverter.toModel(tipoReceita);
-	}
+	}	
 	
 	@DeleteMapping("/{idTipoReceita}")
 	public void remover(@PathVariable Long idTipoReceita) {
@@ -58,10 +66,10 @@ public class TipoReceitaController implements TipoReceitaControllerOpenApi{
 	
 	@PutMapping("/{idTipoReceita}")
 	public TipoReceitaModel atualizar(@PathVariable Long idTipoReceita,
-			@RequestBody @Valid TipoReceitaModel tipoReceitaModel) {
+			@RequestBody @Valid TipoReceitaInputModel tipoReceitaModel) {
 		
 		TipoReceita tipoReceita = tipoReceitaService.getTipoReceita(idTipoReceita);
-		tipoReceitaConverter.copyToDomainObject(tipoReceitaModel, tipoReceita);
+		tipoReceitaInputConverter.copyToDomainObject(tipoReceitaModel, tipoReceita);
 		tipoReceita = tipoReceitaService.salvar(tipoReceita);
 		
 		return tipoReceitaConverter.toModel(tipoReceita);

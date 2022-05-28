@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.financas.api.exceptionHandler.ProblemDetails;
 import com.financas.api.model.RegrasModel;
+import com.financas.api.model.input.RegrasInputModel;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,6 +35,6 @@ public interface RegrasControllerOpenApi {
 		@ApiResponse(code = 404, message = "Regra não encontrada", response = ProblemDetails.class)
 	})
 	public RegrasModel atualizar(@PathVariable Long regrasId,
-			@RequestBody @Valid RegrasModel regrasAtualizadas);
+			@RequestBody @Valid RegrasInputModel regrasAtualizadas);
 	
 }

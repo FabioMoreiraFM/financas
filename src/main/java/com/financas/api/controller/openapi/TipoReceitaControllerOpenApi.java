@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.financas.api.exceptionHandler.ProblemDetails;
 import com.financas.api.model.TipoReceitaModel;
-import com.financas.domain.model.TipoReceita;
+import com.financas.api.model.input.TipoReceitaInputModel;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,7 +34,7 @@ public interface TipoReceitaControllerOpenApi {
 		@ApiResponse(code = 400, message = "ID do tipo de receita inválido", response = ProblemDetails.class),
 		@ApiResponse(code = 404, message = "Tipo de receita não encontrado", response = ProblemDetails.class)
 	})
-	public TipoReceitaModel adicionar(@RequestBody TipoReceita tipoReceita);
+	public TipoReceitaModel adicionar(@RequestBody TipoReceitaInputModel tipoReceita);
 	
 	@ApiOperation("Remove um tipo de receita por ID")
 	@ApiResponses({
@@ -49,5 +49,5 @@ public interface TipoReceitaControllerOpenApi {
 		@ApiResponse(code = 404, message = "Tipo de receita não encontrado", response = ProblemDetails.class)
 	})
 	public TipoReceitaModel atualizar(@PathVariable Long idTipoReceita,
-			@RequestBody @Valid TipoReceitaModel tipoReceitaModel);
+			@RequestBody @Valid TipoReceitaInputModel tipoReceitaModel);
 }

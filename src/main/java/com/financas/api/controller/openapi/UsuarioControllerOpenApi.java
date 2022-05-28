@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.financas.api.exceptionHandler.ProblemDetails;
-import com.financas.api.model.NovoUsuarioModel;
 import com.financas.api.model.UsuarioModel;
+import com.financas.api.model.input.UsuarioInputComSenhaModel;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,7 +34,7 @@ public interface UsuarioControllerOpenApi {
 		@ApiResponse(code = 400, message = "ID do usuário inválido", response = ProblemDetails.class),
 		@ApiResponse(code = 404, message = "Usuário não encontrado", response = ProblemDetails.class)
 	})
-	public UsuarioModel adicionar(@RequestBody @Valid NovoUsuarioModel usuarioNovo);
+	public UsuarioModel adicionar(@RequestBody @Valid UsuarioInputComSenhaModel usuarioNovo);
 	
 	@ApiOperation("Atualiza um tipo de receita por ID")
 	@ApiResponses({
@@ -42,7 +42,7 @@ public interface UsuarioControllerOpenApi {
 		@ApiResponse(code = 404, message = "Usuário não encontrado", response = ProblemDetails.class)
 	})
 	public UsuarioModel atualizar(@PathVariable Long usuarioId,
-			@RequestBody @Valid UsuarioModel usuarioAtualizado);
+			@RequestBody @Valid UsuarioInputComSenhaModel usuarioAtualizado);
 	
 	@ApiOperation("Remove um usuário por ID")
 	@ApiResponses({

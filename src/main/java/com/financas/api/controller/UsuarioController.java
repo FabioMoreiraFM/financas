@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financas.api.assembler.UsuarioConverter;
+import com.financas.api.assembler.UsuarioInputConverter;
 import com.financas.api.controller.openapi.UsuarioControllerOpenApi;
-import com.financas.api.model.NovoUsuarioModel;
 import com.financas.api.model.UsuarioModel;
+import com.financas.api.model.input.UsuarioInputComSenhaModel;
 import com.financas.domain.model.Usuario;
 import com.financas.domain.service.UsuarioService;
 
@@ -26,10 +27,13 @@ import com.financas.domain.service.UsuarioService;
 public class UsuarioController implements UsuarioControllerOpenApi{
 
 	@Autowired
-	UsuarioService usuarioService;
+	private UsuarioService usuarioService;
 	
 	@Autowired
-	UsuarioConverter usuarioConverter;
+	private UsuarioConverter usuarioConverter;
+	
+	@Autowired
+	private UsuarioInputConverter usuarioInputConverter;
 	
 	@GetMapping
 	public List<UsuarioModel> listar() {
@@ -46,8 +50,8 @@ public class UsuarioController implements UsuarioControllerOpenApi{
 	}
 	
 	@PostMapping
-	public UsuarioModel adicionar(@RequestBody @Valid NovoUsuarioModel usuarioNovo) {
-		Usuario usuario = usuarioConverter.toDomainObject(usuarioNovo);
+	public UsuarioModel adicionar(@RequestBody @Valid UsuarioInputComSenhaModel usuarioNovo) {
+		Usuario usuario = usuarioInputConverter.toDomainObject(usuarioNovo);
 		usuario = usuarioService.salvar(usuario);
 		
 		return usuarioConverter.toModel(usuario);
@@ -55,11 +59,11 @@ public class UsuarioController implements UsuarioControllerOpenApi{
 	
 	@PutMapping("/{usuarioId}")
 	public UsuarioModel atualizar(@PathVariable Long usuarioId,
-			@RequestBody @Valid UsuarioModel usuarioAtualizado) {
+			@RequestBody @Valid UsuarioInputComSenhaModel usuarioAtualizado) {
 		
 		Usuario usuario = usuarioService.buscar(usuarioId);
 		
-		usuarioConverter.copyToDomainObject(usuarioAtualizado, usuario);
+		usuarioInputConverter.copyToDomainObject(usuarioAtualizado, usuario);
 		
 		usuario = usuarioService.salvar(usuario);
 		

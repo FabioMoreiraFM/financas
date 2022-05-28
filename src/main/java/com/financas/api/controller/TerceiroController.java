@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financas.api.assembler.TerceiroConverter;
+import com.financas.api.assembler.TerceiroInputConverter;
 import com.financas.api.controller.openapi.TerceiroControllerOpenApi;
 import com.financas.api.model.TerceiroModel;
+import com.financas.api.model.input.TerceiroInputModel;
 import com.financas.domain.model.Terceiro;
 import com.financas.domain.service.TerceiroService;
 
@@ -31,6 +33,9 @@ public class TerceiroController implements TerceiroControllerOpenApi{
 	@Autowired
 	private TerceiroService terceiroService;
 	
+	@Autowired
+	private TerceiroInputConverter terceiroInputConverter;
+	
 	@GetMapping
 	public List<TerceiroModel> listar() { 
 		return terceiroConverter.toCollectionModel(terceiroService.listar());
@@ -43,9 +48,9 @@ public class TerceiroController implements TerceiroControllerOpenApi{
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public TerceiroModel adicionar(@RequestBody @Valid TerceiroModel terceiroModel) { 
+	public TerceiroModel adicionar(@RequestBody @Valid TerceiroInputModel terceiroModel) { 
 		Terceiro terceiro = new Terceiro();
-		terceiroConverter.copyToDomainObject(terceiroModel, terceiro);
+		terceiroInputConverter.copyToDomainObject(terceiroModel, terceiro);
 		
 		terceiro = terceiroService.salvar(terceiro);
 		
