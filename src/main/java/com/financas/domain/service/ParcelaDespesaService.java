@@ -6,9 +6,15 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.financas.api.model.input.ListaParcelaDespesaInputModel;
+import com.financas.domain.exception.EntidadeNaoEncontradaException;
+import com.financas.domain.exception.EnumEntidadeException;
+import com.financas.domain.exception.OperacaoJaEfetuadaException;
 import com.financas.domain.model.Despesa;
 import com.financas.domain.model.ParcelaDespesa;
 import com.financas.domain.repository.ParcelaDespesaRepository;
@@ -71,6 +77,41 @@ public class ParcelaDespesaService {
 		LocalDate dtFinal = mes.atEndOfMonth();
 		
 		return parcelaDespesaRepository.findByAgendaIsNullAndDtVencimentoBetween(dtInicial, dtFinal);
+	}
+
+	public void baixar(ParcelaDespesa parcelaApagar, LocalDate dtPagamento) {
+		parcelaApagar.setDtPagamento(dtPagamento);		
+		
+		parcelaDespesaRepository.save(parcelaApagar);
+	}
+
+	@Transactional
+	public void baixarEmLote(Despesa despesas, ListaParcelaDespesaInputModel parcelasProcuradas) {
+		List<ParcelaDespesa> parcelasABaixar = new ArrayList<ParcelaDespesa>();
+		
+		parcelasProcuradas.getParcelas()
+			.forEach(parcelaProcurada -> {
+				ParcelaDespesa parcelaABaixar = getParcelaABaixar(despesas, parcelaProcurada.getIdParcela());
+				parcelaABaixar.setDtPagamento(parcelaProcurada.getDtPagamento());
+				
+				parcelasABaixar.add(parcelaABaixar);
+			});
+		
+		parcelaDespesaRepository.saveAll(parcelasABaixar);
+	}
+
+	public ParcelaDespesa getParcelaABaixar(Despesa despesas, Long idParcelaProcurada) {
+		ParcelaDespesa parcelaABaixar = despesas.getParcelas()
+			.stream()
+			.filter(parcela -> parcela.getId() == idParcelaProcurada)
+			.findAny()
+			.orElseThrow(() -> new EntidadeNaoEncontradaException(EnumEntidadeException.Parcelas, idParcelaProcurada));
+		
+		if (parcelaABaixar.getDtPagamento() != null) {
+			throw new OperacaoJaEfetuadaException(EnumEntidadeException.Parcelas, parcelaABaixar.getId());
+		}
+		
+		return parcelaABaixar;
 	}
 	
 }

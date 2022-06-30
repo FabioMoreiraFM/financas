@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.financas.domain.exception.EntidadeEmUsoException;
 import com.financas.domain.exception.EntidadeNaoEncontradaException;
+import com.financas.domain.exception.OperacaoJaEfetuadaException;
 
 
 @ControllerAdvice
@@ -156,7 +157,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
 	}
+	
+	@ExceptionHandler(OperacaoJaEfetuadaException.class)
+	public ResponseEntity<?> handleEntidadeNaoEncontrada(OperacaoJaEfetuadaException ex, WebRequest request) {
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		String detail = ex.getMessage();
 		
+		ProblemDetails problem = createProblemBuilder(status, ProblemType.OPERACAO_EM_DUPLICIDADE, detail)
+				.userMessage(detail)
+				.build();
+		
+		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+	}
+	
 	private ProblemDetails.ProblemDetailsBuilder createProblemBuilder(HttpStatus status,
 			ProblemType problemType, String detail) {
 		

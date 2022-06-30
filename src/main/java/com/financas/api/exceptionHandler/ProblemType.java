@@ -9,7 +9,8 @@ public enum ProblemType {
 	DADOS_INVALIDOS("Dados inválidos"),
 	MENSAGEM_INCOMPREENSIVEL("Mensagem incompreensível"),
 	PARAMETRO_INVALIDO("Parâmetro inválido"),
-	ENTIDADE_EM_USO("Entidade em uso");
+	ENTIDADE_EM_USO("Entidade em uso"),
+	OPERACAO_EM_DUPLICIDADE("Operação já efetuada.");
 	
 	private String title;
 	
