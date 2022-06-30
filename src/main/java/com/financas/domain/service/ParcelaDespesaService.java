@@ -20,6 +20,9 @@ import com.financas.domain.model.ParcelaDespesa;
 import com.financas.domain.repository.ParcelaDespesaRepository;
 import com.financas.infrastructure.utils.DataUtils;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class ParcelaDespesaService {
 
@@ -41,6 +44,8 @@ public class ParcelaDespesaService {
 			dtVencimento = dtVencimento.plusMonths(1);
 			dtVencimento = configurarDtVencimentoParcela(dtVencimento, diaVencimentoParcela); 
 		}
+
+		log.info("{} parcelas geradas para a despesa de id {}", parcelas.size(), despesa.getId());
 		
 		return parcelas;
 	}
@@ -64,10 +69,14 @@ public class ParcelaDespesaService {
 	}
 	
 	public ParcelaDespesa salvar(ParcelaDespesa parcelaDespesa) {
+		log.info("Salvando parcela de id {}", parcelaDespesa.getId());
+		
 		return parcelaDespesaRepository.save(parcelaDespesa);
 	}
 	
-	public List<ParcelaDespesa> salvar(List<ParcelaDespesa> parcelasDespesa) {		
+	public List<ParcelaDespesa> salvar(List<ParcelaDespesa> parcelasDespesa) {
+		log.info("Salvando um total de {} parcelas da despesa {}", parcelasDespesa.size(), parcelasDespesa.get(0).getDespesa().getId());
+		
 		return parcelaDespesaRepository.saveAll(parcelasDespesa);
 	}
 
@@ -83,10 +92,14 @@ public class ParcelaDespesaService {
 		parcelaApagar.setDtPagamento(dtPagamento);		
 		
 		parcelaDespesaRepository.save(parcelaApagar);
+		
+		log.info("Parcela de id {} foi baixada com data {}", parcelaApagar.getId(), dtPagamento.toString());
 	}
 
 	@Transactional
 	public void baixarEmLote(Despesa despesas, ListaParcelaDespesaInputModel parcelasProcuradas) {
+		log.info("Iniciando processo de baixa em lote de {} parcelas", parcelasProcuradas.getParcelas().size());
+		
 		List<ParcelaDespesa> parcelasABaixar = new ArrayList<ParcelaDespesa>();
 		
 		parcelasProcuradas.getParcelas()
@@ -98,6 +111,7 @@ public class ParcelaDespesaService {
 			});
 		
 		parcelaDespesaRepository.saveAll(parcelasABaixar);
+		log.info("{} parcelas baixadas da despesa de id {}", parcelasABaixar.size(), despesas.getId());
 	}
 
 	public ParcelaDespesa getParcelaABaixar(Despesa despesas, Long idParcelaProcurada) {
@@ -108,6 +122,7 @@ public class ParcelaDespesaService {
 			.orElseThrow(() -> new EntidadeNaoEncontradaException(EnumEntidadeException.Parcelas, idParcelaProcurada));
 		
 		if (parcelaABaixar.getDtPagamento() != null) {
+			log.info("Parcela de id {} já foi baixada", idParcelaProcurada);
 			throw new OperacaoJaEfetuadaException(EnumEntidadeException.Parcelas, parcelaABaixar.getId());
 		}
 		

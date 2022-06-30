@@ -18,6 +18,9 @@ import com.financas.domain.model.ParcelaDespesa;
 import com.financas.domain.model.Regras;
 import com.financas.domain.repository.AgendaRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 @Transactional
 public class AgendaService {
@@ -42,7 +45,9 @@ public class AgendaService {
 			.map(this::gerar)
 			.collect(Collectors.toList());
 		
-		agendaRepository.saveAll(agenda); 
+		agendaRepository.saveAll(agenda);
+		
+		log.info("Gerados {} lembretes de pagamentos.", parcelasDoMesSemAgendamento.size());
 	}
 	
 	public Agenda gerar(ParcelaDespesa parcela) {
@@ -78,6 +83,8 @@ public class AgendaService {
 				enviar(agenda);
 				atualizarSituacaoAgenda(agenda, qtdMaxEnvio);
 			});
+		
+		log.info("{} lembretes de pagamento foram enviados por e-mail", agendas.size());
 	}
 	
 	public void enviar(Agenda agenda) {
