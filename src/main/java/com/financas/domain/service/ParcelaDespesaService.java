@@ -15,6 +15,7 @@ import com.financas.api.model.input.ListaParcelaDespesaInputModel;
 import com.financas.domain.exception.EntidadeNaoEncontradaException;
 import com.financas.domain.exception.EnumEntidadeException;
 import com.financas.domain.exception.OperacaoJaEfetuadaException;
+import com.financas.domain.exception.SolicitacaoInconsistenteException;
 import com.financas.domain.model.Despesa;
 import com.financas.domain.model.ParcelaDespesa;
 import com.financas.domain.repository.ParcelaDespesaRepository;
@@ -29,6 +30,11 @@ public class ParcelaDespesaService {
 	@Autowired
 	private ParcelaDespesaRepository parcelaDespesaRepository;
 
+	public ParcelaDespesa buscar(Long parcelaId) {
+		return parcelaDespesaRepository.findById(parcelaId)
+				.orElseThrow(() -> new EntidadeNaoEncontradaException(EnumEntidadeException.Parcelas, parcelaId));
+	}
+	
 	public List<ParcelaDespesa> gerar(Despesa despesa) {
 		Integer totalParcelas = despesa.getTotalParcelas();
 		BigDecimal valorParcela = despesa.getValorParcela();
@@ -127,6 +133,21 @@ public class ParcelaDespesaService {
 		}
 		
 		return parcelaABaixar;
+	}
+	
+	public ParcelaDespesa getParcelaPaga(Despesa despesas, Long idParcelaProcurada) {
+		ParcelaDespesa parcelaEmAberto = despesas.getParcelas()
+			.stream()
+			.filter(parcela -> parcela.getId() == idParcelaProcurada)
+			.findAny()
+			.orElseThrow(() -> new EntidadeNaoEncontradaException(EnumEntidadeException.Parcelas, idParcelaProcurada));
+		
+		if (parcelaEmAberto.getDtPagamento() == null) {
+			log.info("Parcela de id {} não foi baixada.", idParcelaProcurada);
+			throw new SolicitacaoInconsistenteException(EnumEntidadeException.Parcelas, String.format("A parcela de id {} não foi baixada.", parcelaEmAberto.getId()));
+		}
+		
+		return parcelaEmAberto;
 	}
 	
 }

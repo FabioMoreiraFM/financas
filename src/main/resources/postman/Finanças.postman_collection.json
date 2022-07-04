@@ -914,6 +914,82 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Pagar Despesa por Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/despesas/2/baixa/1?dtPagamento=2022-06-22",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"despesas",
+								"2",
+								"baixa",
+								"1"
+							],
+							"query": [
+								{
+									"key": "dtPagamento",
+									"value": "2022-06-22"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagar Parcelas em Lote",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"parcelas\" : [\r\n        {\r\n            \"dtPagamento\": \"2022-06-29\",\r\n            \"idParcela\": 1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/despesas/2/baixa",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"despesas",
+								"2",
+								"baixa"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1104,6 +1180,160 @@
 							"path": [
 								"oauth",
 								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comprovantes",
+			"item": [
+				{
+					"name": "Salvar Comprovante",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "descricao",
+									"value": "Teste",
+									"type": "text"
+								},
+								{
+									"key": "arquivo",
+									"type": "file",
+									"src": "/D:/Usuario/Downloads/teste.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/despesas/2/parcelas/1/comprovante",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"despesas",
+								"2",
+								"parcelas",
+								"1",
+								"comprovante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Emitir Comprovante",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/despesas/2/parcelas/1/comprovante",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"despesas",
+								"2",
+								"parcelas",
+								"1",
+								"comprovante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Info Comprovante",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/despesas/2/parcelas/1/comprovante",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"despesas",
+								"2",
+								"parcelas",
+								"1",
+								"comprovante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Comprovante",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/despesas/2/parcelas/1/comprovante",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"despesas",
+								"2",
+								"parcelas",
+								"1",
+								"comprovante"
 							]
 						}
 					},

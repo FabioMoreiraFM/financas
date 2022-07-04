@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.financas.domain.exception.EntidadeEmUsoException;
 import com.financas.domain.exception.EntidadeNaoEncontradaException;
 import com.financas.domain.exception.OperacaoJaEfetuadaException;
+import com.financas.domain.exception.SolicitacaoInconsistenteException;
 
 
 @ControllerAdvice
@@ -164,6 +165,18 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		String detail = ex.getMessage();
 		
 		ProblemDetails problem = createProblemBuilder(status, ProblemType.OPERACAO_EM_DUPLICIDADE, detail)
+				.userMessage(detail)
+				.build();
+		
+		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+	}
+	
+	@ExceptionHandler(SolicitacaoInconsistenteException.class)
+	public ResponseEntity<?> handleEntidadeNaoEncontrada(SolicitacaoInconsistenteException ex, WebRequest request) {
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		String detail = ex.getMessage();
+		
+		ProblemDetails problem = createProblemBuilder(status, ProblemType.DADOS_INVALIDOS, detail)
 				.userMessage(detail)
 				.build();
 		

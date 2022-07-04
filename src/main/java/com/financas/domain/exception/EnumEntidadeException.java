@@ -9,7 +9,8 @@ public enum EnumEntidadeException {
 	Usuarios("usuarios"),
 	Despesas("despesas"),
 	Receitas("receitas"),
-	Parcelas("parcelas");
+	Parcelas("parcelas"),
+	Comprovante("comprovante");
 	
 	private String tipo;
 	

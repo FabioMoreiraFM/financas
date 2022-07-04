@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.financas.api.assembler.GenericConverter;
+import com.financas.api.model.ComprovanteModel;
 import com.financas.api.model.DespesaModel;
 import com.financas.api.model.ReceitaModel;
 import com.financas.api.model.RegrasModel;
@@ -18,6 +19,7 @@ import com.financas.api.model.input.TerceiroInputModel;
 import com.financas.api.model.input.TipoDespesaInputModel;
 import com.financas.api.model.input.TipoReceitaInputModel;
 import com.financas.api.model.input.UsuarioInputComSenhaModel;
+import com.financas.domain.model.Comprovante;
 import com.financas.domain.model.Despesa;
 import com.financas.domain.model.Receita;
 import com.financas.domain.model.Regras;
@@ -111,6 +113,12 @@ public class AssemblerConfig {
 	public GenericConverter<UsuarioInputComSenhaModel, TipoReceita> usuarioInputConverter() {
 		return new GenericConverter<UsuarioInputComSenhaModel, TipoReceita>
 			(UsuarioInputComSenhaModel.class, TipoReceita.class);
+	}
+	
+	@Bean
+	public GenericConverter<ComprovanteModel, Comprovante> comprovanteConverter() {
+		return new GenericConverter<ComprovanteModel, Comprovante>
+			(ComprovanteModel.class, Comprovante.class);
 	}
 	
 }
