@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sub_extrato-despesa" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a19a1881-a8ea-4157-9944-f59e1b571524">
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="dtPagamento" class="java.time.LocalDate"/>
+	<field name="dtVencimento" class="java.time.LocalDate"/>
+	<field name="valor" class="java.math.BigDecimal"/>
+	<field name="numeroParcela" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<rectangle>
+				<reportElement x="2" y="1" width="500" height="21" forecolor="#857E7E" uuid="272d453d-e281-42e7-81a4-59a1d9f2303a"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="4" y="1" width="90" height="21" uuid="fe99f0fb-4532-4db9-aaa5-7869e047e97a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Número da Parcela]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="1" width="90" height="21" uuid="b1625a0d-5fd3-4c6f-9a16-59ca8a2d982c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Valor Esperado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="1" width="90" height="21" uuid="1b53d42a-9d0a-44ed-a714-745ad0db115d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Valor Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="1" width="99" height="21" uuid="8f3f6d73-a779-45c4-956e-b090755880ed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Data de Vencimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="1" width="90" height="21" uuid="118f548b-b0d2-4de7-84b0-fe90f25ef07c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Data de Pagamento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="412" y="2" width="89" height="17" uuid="4ba3e76f-6f57-46d0-ae63-b977b047283c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[java.util.Date.from($F{dtPagamento}.atStartOfDay(java.time.ZoneId.systemDefault()).toInstant())]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="300" y="2" width="99" height="17" uuid="5fafe34a-53cb-4944-a127-03c069056de5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[java.util.Date.from($F{dtVencimento}.atStartOfDay(java.time.ZoneId.systemDefault()).toInstant())]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="197" y="2" width="90" height="17" uuid="80063dd0-4bae-448c-b29b-189ac83f2847">
+					<printWhenExpression><![CDATA[$F{dtPagamento} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{valor}.doubleValue()]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="101" y="2" width="90" height="17" uuid="3760fffd-8ac4-4948-afa8-c44bddf18c05"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{valor}.doubleValue()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="2" width="90" height="17" uuid="e9389fed-b1b8-4a4e-b64d-9b4c1763294c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{numeroParcela}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="21" width="501" height="1" forecolor="#857E7E" uuid="29c55777-2250-4512-8644-c19742be6327">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>
