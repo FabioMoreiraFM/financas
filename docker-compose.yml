@@ -1,0 +1,26 @@
+version: "3.9"
+
+networks:
+   financas-network:
+     driver: bridge
+
+services:
+   financas-mysql:
+      image: mysql:5.7
+      environment:
+         MYSQL_ALLOW_EMPTY_PASSWORD: "yes"         
+      ports:
+         - "3306:3306"
+      networks:
+         - financas-network
+   
+   financas-api:
+      image: financas
+      command: ["/wait-for-it.sh", "financas-mysql:3306", "-t", "30", "--", "java", "-jar", "api.jar"]
+      environment:
+         DB_HOST: financas-mysql
+         SPRING_PROFILES_ACTIVE: "development" 
+      networks:
+         - financas-network
+      depends_on:
+         - financas-mysql

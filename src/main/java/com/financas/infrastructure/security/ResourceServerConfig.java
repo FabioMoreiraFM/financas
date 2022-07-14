@@ -28,7 +28,8 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
             "/swagger-resources/**",
             "/configuration/security",
             "/swagger-ui.html",
-            "/webjars/**"
+            "/webjars/**",
+            "/hostcheck"
 	};
 	
 	@Override

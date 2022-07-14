@@ -1,0 +1,26 @@
+spring:
+   datasource:
+      username: 
+      password: 
+   jpa:
+      show-sql: true
+   security:
+      oauth2.resourceserver.jwt.public-key-location: 
+
+cloud:
+   aws: 
+      credentials:
+         acess-key: 
+         secret-key: 
+   s3:
+      credentials:
+         acess-key: 
+         secret-key: 
+
+financas:
+   security:
+      jwt:
+         keystore:
+            jks-location: classpath:keys/
+            password: 
+            keypair-alias: 
